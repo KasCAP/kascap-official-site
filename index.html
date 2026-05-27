@@ -12,145 +12,92 @@
 
 <body>
 
-  <!-- HERO -->
-
   <header class="hero-card clickable-card" data-href="projects/kascap/index.html" tabindex="0">
 
-    <img
-      src="assets/logo/KasCAP.png"
-      class="hero-logo"
-      alt="KasCAP Logo"
-    >
+    <img src="assets/logo/KasCAP.png" class="hero-logo" alt="KasCAP Logo">
 
     <p class="hero-tagline">
       KRC-721 NFT COLLECTIONS POWERED BY KasCAP
     </p>
 
-    <a
-      href="https://x.com/Kaspa_CAP"
-      target="_blank"
-      class="icon-btn hero-x-btn"
-      aria-label="KasCAP X"
-    >
+    <a href="https://x.com/Kaspa_CAP" target="_blank" class="icon-btn hero-x-btn" aria-label="KasCAP X">
       <img src="assets/link/x.png" alt="X">
     </a>
 
   </header>
 
-  <!-- PROJECTS -->
-
   <main>
 
     <section class="project-card clickable-card" data-href="projects/kaspunks/index.html" tabindex="0">
-
       <div class="card-content">
-
         <h2>KASPUNKS</h2>
-
-        <p>
-          A collection of 1,000 unique collectible generative art NFTs based on the KRC-721 standard.
-        </p>
+        <p>A collection of 1,000 unique collectible generative art NFTs based on the KRC-721 standard.</p>
 
         <div class="link-group">
-
           <a href="https://kaspa.com/nft/collections/KASPUNKS" target="_blank" class="icon-btn" aria-label="KasPunks KaspaCom">
             <img src="assets/link/kaspacom.png" alt="KaspaCom">
           </a>
-
           <a href="https://t.me/kapunkscommunity" target="_blank" class="icon-btn" aria-label="KasPunks Telegram">
             <img src="assets/link/telegram.png" alt="Telegram">
           </a>
-
           <a href="https://x.com/KasPunks" target="_blank" class="icon-btn" aria-label="KasPunks X">
             <img src="assets/link/x.png" alt="X">
           </a>
-
         </div>
-
       </div>
 
       <img src="assets/projects/kaspunks.png" class="card-image" alt="KASPUNKS">
-
     </section>
 
     <section class="project-card clickable-card" data-href="projects/yonamaxi/index.html" tabindex="0">
-
       <div class="card-content">
-
         <h2>YONAMAXI</h2>
-
-        <p>
-          A special limited-edition NFT collaboration of 250 pieces by YONATOSHI and KasCAP.
-        </p>
+        <p>A special limited-edition NFT collaboration of 250 pieces by YONATOSHI and KasCAP.</p>
 
         <div class="link-group">
-
           <a href="https://kaspa.com/nft/collections/YONAMAXI" target="_blank" class="icon-btn" aria-label="YonaMaxi KaspaCom">
             <img src="assets/link/kaspacom.png" alt="KaspaCom">
           </a>
-
         </div>
-
       </div>
 
       <img src="assets/projects/yonamaxi.png" class="card-image" alt="YONAMAXI">
-
     </section>
 
     <section class="project-card clickable-card" data-href="projects/kashin/index.html" tabindex="0">
-
       <div class="card-content">
-
         <h2>KASHIN</h2>
-
-        <p>
-          A limited collection of 3,397 collectible NFTs inspired by Japanese seasons, mythology, and symbolic culture.
-        </p>
+        <p>A limited collection of 3,397 collectible NFTs inspired by Japanese seasons, mythology, and symbolic culture.</p>
 
         <div class="link-group">
-
           <a href="https://kaspa.com/nft/collections/KASHIN" target="_blank" class="icon-btn" aria-label="KASHIN KaspaCom">
             <img src="assets/link/kaspacom.png" alt="KaspaCom">
           </a>
-
           <a href="https://t.me/Kashin3397" target="_blank" class="icon-btn" aria-label="KASHIN Telegram">
             <img src="assets/link/telegram.png" alt="Telegram">
           </a>
-
           <a href="https://x.com/KASHIN3397" target="_blank" class="icon-btn" aria-label="KASHIN X">
             <img src="assets/link/x.png" alt="X">
           </a>
-
         </div>
-
       </div>
 
       <img src="assets/projects/kashin.png" class="card-image" alt="KASHIN">
-
     </section>
 
     <section class="project-card clickable-card" data-href="projects/kca/index.html" tabindex="0">
-
       <div class="card-content">
-
         <h2>KCA</h2>
-
-        <p>
-          An access token redeemable across future KasCAP works for exclusive opportunities and exchanges.
-        </p>
+        <p>An access token redeemable across future KasCAP works for exclusive opportunities and exchanges.</p>
 
         <div class="link-group">
-
           <a href="https://kaspa.com/nft/collections/KCA" target="_blank" class="icon-btn" aria-label="KCA KaspaCom">
             <img src="assets/link/kaspacom.png" alt="KaspaCom">
           </a>
-
         </div>
-
       </div>
 
       <img src="assets/projects/kca.png" class="card-image" alt="KCA">
-
     </section>
 
   </main>
@@ -160,15 +107,10 @@
 
     clickableCards.forEach((card) => {
       card.addEventListener("click", (event) => {
-        if (event.target.closest(".icon-btn")) {
-          return;
-        }
+        if (event.target.closest(".icon-btn")) return;
 
         const href = card.dataset.href;
-
-        if (!href) {
-          return;
-        }
+        if (!href) return;
 
         card.classList.add("is-tapped");
 
@@ -180,31 +122,10 @@
       card.addEventListener("keydown", (event) => {
         if (event.key === "Enter") {
           const href = card.dataset.href;
-
-          if (href) {
-            window.location.href = href;
-          }
+          if (href) window.location.href = href;
         }
       });
     });
-
-    const focusTargets = document.querySelectorAll(".project-card");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.55) {
-            focusTargets.forEach((card) => card.classList.remove("is-focused"));
-            entry.target.classList.add("is-focused");
-          }
-        });
-      },
-      {
-        threshold: [0.35, 0.55, 0.75]
-      }
-    );
-
-    focusTargets.forEach((card) => observer.observe(card));
   </script>
 
 </body>
