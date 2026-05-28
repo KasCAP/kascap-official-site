@@ -17,9 +17,7 @@
       margin: 0 auto 90px;
     }
 
-    .mobile-header {
-      display: none;
-    }
+    .mobile-header { display: none; }
 
     .detail-top {
       display: grid;
@@ -39,22 +37,12 @@
       justify-content: center;
       border-radius: 12px;
       border: 1px solid rgba(180,255,244,0.18);
-      background:
-        linear-gradient(
-          180deg,
-          rgba(116,198,186,0.18) 0%,
-          rgba(116,198,186,0.42) 45%,
-          rgba(116,198,186,0.82) 100%
-        );
+      background: linear-gradient(180deg, rgba(116,198,186,0.18) 0%, rgba(116,198,186,0.42) 45%, rgba(116,198,186,0.82) 100%);
       color: white;
       text-decoration: none;
       font-weight: 800;
       box-shadow: 0 10px 24px rgba(0,0,0,0.20);
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
       cursor: pointer;
     }
 
@@ -66,9 +54,7 @@
     .modal-close:hover {
       transform: translateY(-2px);
       border-color: rgba(116,198,186,0.55);
-      box-shadow:
-        0 12px 28px rgba(0,0,0,0.26),
-        0 0 18px rgba(116,198,186,0.18);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.26), 0 0 18px rgba(116,198,186,0.18);
     }
 
     .back-link {
@@ -113,9 +99,7 @@
       text-align: center;
     }
 
-    .mobile-filter-bar {
-      display: none;
-    }
+    .mobile-filter-bar { display: none; }
 
     .collection-layout {
       display: grid;
@@ -128,12 +112,7 @@
     .nft-panel {
       border-radius: 28px;
       border: 1px solid rgba(255,255,255,0.10);
-      background:
-        linear-gradient(
-          180deg,
-          rgba(255,255,255,0.07),
-          rgba(255,255,255,0.025)
-        );
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
       backdrop-filter: blur(10px);
       box-shadow: 0 20px 60px rgba(0,0,0,0.28);
     }
@@ -146,83 +125,53 @@
       overflow: auto;
     }
 
-    .drawer-head {
-      display: block;
-    }
+    .drawer-head { display: block; }
+    .drawer-close { display: none; }
 
-    .drawer-close {
-      display: none;
+    .filter-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
     }
 
     .filter-title {
       font-family: "Gamer", sans-serif;
       font-size: 48px;
-      margin-bottom: 18px;
+      margin-bottom: 0;
     }
 
-   .filter-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 18px;
-}
+    .clear-filters-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(180,255,244,0.18);
+      background: linear-gradient(180deg, rgba(116,198,186,0.18) 0%, rgba(116,198,186,0.42) 45%, rgba(116,198,186,0.82) 100%);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
 
-.filter-title {
-  margin-bottom: 0;
-}
+    .clear-filters-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(116,198,186,0.55);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.24), 0 0 14px rgba(116,198,186,0.16);
+    }
 
-.clear-filters-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  height: 32px;
-  padding: 0 12px;
-
-  border-radius: 10px;
-  border: 1px solid rgba(180,255,244,0.18);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(116,198,186,0.18) 0%,
-      rgba(116,198,186,0.42) 45%,
-      rgba(116,198,186,0.82) 100%
-    );
-
-  color: white;
-
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-
-  cursor: pointer;
-
-  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
-
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.clear-filters-btn:hover {
-  transform: translateY(-2px);
-
-  border-color: rgba(116,198,186,0.55);
-
-  box-shadow:
-    0 10px 22px rgba(0,0,0,0.24),
-    0 0 14px rgba(116,198,186,0.16);
-}
-
-.clear-filters-btn:disabled {
-  opacity: 0.35;
-  cursor: default;
-  transform: none;
-  box-shadow: none;
-}
+    .clear-filters-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+      transform: none;
+      box-shadow: none;
+    }
 
     .result-count {
       color: rgba(255,255,255,0.58);
@@ -243,9 +192,7 @@
       list-style: none;
     }
 
-    summary::-webkit-details-marker {
-      display: none;
-    }
+    summary::-webkit-details-marker { display: none; }
 
     .filter-options {
       display: grid;
@@ -261,13 +208,9 @@
       font-size: 13px;
     }
 
-    .filter-option input {
-      accent-color: #74c6ba;
-    }
+    .filter-option input { accent-color: #74c6ba; }
 
-    .nft-panel {
-      padding: 22px;
-    }
+    .nft-panel { padding: 22px; }
 
     .nft-grid {
       display: grid;
@@ -281,10 +224,7 @@
       border: 1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.045);
       cursor: pointer;
-      transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .nft-card:hover {
@@ -333,9 +273,7 @@
       backdrop-filter: blur(10px);
     }
 
-    .modal.is-visible {
-      display: flex;
-    }
+    .modal.is-visible { display: flex; }
 
     .modal-card {
       position: relative;
@@ -410,72 +348,56 @@
       margin-top: 4px;
     }
 
-    .drawer-backdrop {
-      display: none;
-    }
+    .drawer-backdrop { display: none; }
 
     @media (max-width: 767px) {
-  body {
-    padding-top: 70px;
-  }
+      body { padding-top: 70px; }
 
-.filter-head {
-  margin-bottom: 12px;
-}
+      .detail-wrap {
+        position: static;
+        z-index: auto;
+        width: 100%;
+        margin: 0 auto 70px;
+      }
 
-.clear-filters-btn {
-  height: 34px;
-  padding: 0 13px;
-}
+      .mobile-header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 90;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 66px;
+        padding: 10px 14px;
+        background: rgba(7,7,11,0.82);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
 
+      .mobile-back {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 36px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
 
-  .detail-wrap {
-    position: static;
-    z-index: auto;
-    width: 100%;
-    margin: 0 auto 70px;
-  }
+      .mobile-back:hover { transform: translateY(-50%); }
 
-  .mobile-header {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 90;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 66px;
-    padding: 10px 14px;
-    background: rgba(7,7,11,0.82);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .mobile-back {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 36px;
-    padding: 0 14px;
-    font-size: 13px;
-  }
-
-  .mobile-back:hover {
-    transform: translateY(-50%);
-  }
-
-  .mobile-title {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-family: "Gamer", sans-serif;
-    font-size: 42px;
-    line-height: 0.9;
-    color: white;
-  }
+      .mobile-title {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Gamer", sans-serif;
+        font-size: 42px;
+        line-height: 0.9;
+        color: white;
+      }
 
       .detail-top {
         display: block;
@@ -484,9 +406,7 @@
       }
 
       .detail-top .back-link,
-      .detail-title {
-        display: none;
-      }
+      .detail-title { display: none; }
 
       .top-links {
         justify-content: center;
@@ -511,13 +431,7 @@
         align-items: center;
         gap: 12px;
         padding: 10px 0 14px;
-        background:
-          linear-gradient(
-            180deg,
-            rgba(7,7,11,0.94),
-            rgba(7,7,11,0.72),
-            rgba(7,7,11,0)
-          );
+        background: linear-gradient(180deg, rgba(7,7,11,0.94), rgba(7,7,11,0.72), rgba(7,7,11,0));
         backdrop-filter: blur(8px);
       }
 
@@ -533,9 +447,7 @@
         font-size: 12px;
       }
 
-      .collection-layout {
-        display: block;
-      }
+      .collection-layout { display: block; }
 
       .filter-panel {
         position: fixed;
@@ -550,24 +462,24 @@
         transition: transform 0.28s ease;
         border-radius: 26px 26px 0 0;
         padding: 22px;
-        background:
-          linear-gradient(
-            180deg,
-            rgba(18,32,32,0.99),
-            rgba(8,12,16,0.99)
-          );
+        background: linear-gradient(180deg, rgba(18,32,32,0.99), rgba(8,12,16,0.99));
         backdrop-filter: none;
       }
 
-      .filter-panel.is-open {
-        transform: translateY(0);
-      }
+      .filter-panel.is-open { transform: translateY(0); }
 
       .drawer-head {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 12px;
+      }
+
+      .filter-head { margin-bottom: 12px; }
+
+      .clear-filters-btn {
+        height: 34px;
+        padding: 0 13px;
       }
 
       .drawer-close {
@@ -586,9 +498,7 @@
         backdrop-filter: blur(4px);
       }
 
-      .drawer-backdrop.is-visible {
-        display: block;
-      }
+      .drawer-backdrop.is-visible { display: block; }
 
       .nft-panel {
         padding: 14px;
@@ -600,9 +510,7 @@
         gap: 12px;
       }
 
-      .nft-card {
-        border-radius: 16px;
-      }
+      .nft-card { border-radius: 16px; }
 
       .nft-card p {
         font-size: 11px;
@@ -613,6 +521,7 @@
         align-items: stretch;
         justify-content: stretch;
         padding: 0;
+        z-index: 100;
       }
 
       .modal-card {
@@ -628,14 +537,16 @@
       }
 
       .modal-close {
-  position: fixed;
-  right: 14px;
-  top: 14px;
-  width: 46px;
-  height: 42px;
-  z-index: 70;
-  display: inline-flex;
-}
+        position: fixed;
+        right: 14px;
+        top: 12px;
+        width: 42px;
+        height: 42px;
+        z-index: 120;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
 
       .modal-image {
         width: 100%;
@@ -651,13 +562,9 @@
         padding-right: 0;
       }
 
-      .modal-info p {
-        font-size: 13px;
-      }
+      .modal-info p { font-size: 13px; }
 
-      .trait-list {
-        grid-template-columns: 1fr;
-      }
+      .trait-list { grid-template-columns: 1fr; }
 
       .trait {
         padding: 16px;
@@ -684,25 +591,21 @@
       <h1 class="detail-title">YONAMAXI</h1>
 
       <div class="top-links">
-
         <a href="https://kaspa.com/nft/collections/YONAMAXI" target="_blank" class="icon-btn" aria-label="KaspaCom">
           <img src="../../assets/link/kaspacom.png" alt="KaspaCom">
         </a>
-
         <a href="https://t.me/kapunkscommunity/27911" target="_blank" class="icon-btn" aria-label="Telegram">
           <img src="../../assets/link/telegram.png" alt="Telegram">
         </a>
-
         <a href="https://x.com/Kaspa_CAP" target="_blank" class="icon-btn" aria-label="X">
           <img src="../../assets/link/x.png" alt="X">
         </a>
-
       </div>
 
     </div>
 
     <p class="official-text">
-      <strong><em>YonaMaxi</em></strong> is a special limited-edition NFT collaboration of 250 pieces, created by the joint team of YONATOSHI and KasCAP.
+      YonaMaxi is a special limited-edition NFT collaboration of 250 pieces, created by the joint team of YONATOSHI and KasCAP.
     </p>
 
     <div class="mobile-filter-bar">
@@ -714,16 +617,18 @@
 
       <aside id="filterPanel" class="filter-panel">
         <div class="drawer-head">
-  <div class="filter-head">
-    <h2 class="filter-title">FILTER</h2>
 
-    <button id="clearFiltersBtn" class="clear-filters-btn" type="button" disabled>
-      CLEAR
-    </button>
-  </div>
+          <div class="filter-head">
+            <h2 class="filter-title">FILTER</h2>
 
-  <button id="drawerClose" class="drawer-close">▼</button>
-</div>
+            <button id="clearFiltersBtn" class="clear-filters-btn" type="button" disabled>
+              CLEAR
+            </button>
+          </div>
+
+          <button id="drawerClose" class="drawer-close">▼</button>
+
+        </div>
 
         <p id="resultCount" class="result-count">Loading metadata...</p>
         <div id="filters"></div>
@@ -798,21 +703,12 @@
     let selectedFilters = {};
 
     function imageCandidates(id) {
-      const padded = String(id).padStart(4, "0");
+      const fileId = String(id);
 
       return [
-        `https://${IMAGE_CID}.ipfs.inbrowser.link/${id}.png`,
-        `https://ipfs.io/ipfs/${IMAGE_CID}/${id}.png`,
-        `https://gateway.pinata.cloud/ipfs/${IMAGE_CID}/${id}.png`,
-        `https://${IMAGE_CID}.ipfs.inbrowser.link/${padded}.png`,
-        `https://ipfs.io/ipfs/${IMAGE_CID}/${padded}.png`,
-        `https://gateway.pinata.cloud/ipfs/${IMAGE_CID}/${padded}.png`,
-        `https://${IMAGE_CID}.ipfs.inbrowser.link/${id}.jpg`,
-        `https://ipfs.io/ipfs/${IMAGE_CID}/${id}.jpg`,
-        `https://gateway.pinata.cloud/ipfs/${IMAGE_CID}/${id}.jpg`,
-        `https://${IMAGE_CID}.ipfs.inbrowser.link/${padded}.jpg`,
-        `https://ipfs.io/ipfs/${IMAGE_CID}/${padded}.jpg`,
-        `https://gateway.pinata.cloud/ipfs/${IMAGE_CID}/${padded}.jpg`
+        `https://${IMAGE_CID}.ipfs.inbrowser.link/${fileId}.png`,
+        `https://ipfs.io/ipfs/${IMAGE_CID}/${fileId}.png`,
+        `https://gateway.pinata.cloud/ipfs/${IMAGE_CID}/${fileId}.png`
       ];
     }
 
@@ -855,11 +751,7 @@
           name: `YONAMAXI #${id}`,
           description: "",
           attributes: [],
-          Rarity: "",
-          Cycle: "",
-          Group: "",
-          Role: "",
-          Mask: ""
+          ...Object.fromEntries(FILTER_KEYS.map((key) => [key, ""]))
         };
       }
     }
@@ -885,13 +777,14 @@
       renderNFTs();
       updateClearButton();
     }
-function updateClearButton() {
-  const hasActiveFilter = FILTER_KEYS.some((key) => {
-    return selectedFilters[key] && selectedFilters[key].size > 0;
-  });
 
-  clearFiltersBtn.disabled = !hasActiveFilter;
-}
+    function updateClearButton() {
+      const hasActiveFilter = FILTER_KEYS.some((key) => {
+        return selectedFilters[key] && selectedFilters[key].size > 0;
+      });
+
+      clearFiltersBtn.disabled = !hasActiveFilter;
+    }
 
     function buildFilters() {
       filtersEl.innerHTML = "";
@@ -906,7 +799,7 @@ function updateClearButton() {
         selectedFilters[key] = new Set();
 
         const details = document.createElement("details");
-        details.open = key === "Rarity";
+        details.open = key === FILTER_KEYS[0];
 
         const summary = document.createElement("summary");
         summary.textContent = key;
@@ -944,18 +837,18 @@ function updateClearButton() {
     }
 
     function applyFilters() {
-  visibleCount = ITEMS_PER_LOAD;
+      visibleCount = ITEMS_PER_LOAD;
 
-  currentItems = allNFTs.filter((nft) => {
-    return FILTER_KEYS.every((key) => {
-      if (selectedFilters[key].size === 0) return true;
-      return selectedFilters[key].has(nft[key]);
-    });
-  });
+      currentItems = allNFTs.filter((nft) => {
+        return FILTER_KEYS.every((key) => {
+          if (selectedFilters[key].size === 0) return true;
+          return selectedFilters[key].has(nft[key]);
+        });
+      });
 
-  renderNFTs();
-  updateClearButton();
-}
+      renderNFTs();
+      updateClearButton();
+    }
 
     function renderNFTs() {
       nftGrid.innerHTML = "";
@@ -1074,34 +967,34 @@ function updateClearButton() {
       }
     });
 
-  filterToggle.addEventListener("click", openFilterDrawer);
-drawerClose.addEventListener("click", closeFilterDrawer);
-drawerBackdrop.addEventListener("click", closeFilterDrawer);
+    filterToggle.addEventListener("click", openFilterDrawer);
+    drawerClose.addEventListener("click", closeFilterDrawer);
+    drawerBackdrop.addEventListener("click", closeFilterDrawer);
 
-clearFiltersBtn.addEventListener("click", () => {
-  FILTER_KEYS.forEach((key) => {
-    selectedFilters[key].clear();
-  });
+    clearFiltersBtn.addEventListener("click", () => {
+      FILTER_KEYS.forEach((key) => {
+        selectedFilters[key].clear();
+      });
 
-  document
-    .querySelectorAll('#filters input[type="checkbox"]')
-    .forEach((checkbox) => {
-      checkbox.checked = false;
+      document
+        .querySelectorAll('#filters input[type="checkbox"]')
+        .forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+      visibleCount = ITEMS_PER_LOAD;
+      currentItems = allNFTs;
+
+      renderNFTs();
+      updateClearButton();
     });
 
-  visibleCount = ITEMS_PER_LOAD;
-  currentItems = allNFTs;
-
-  renderNFTs();
-  updateClearButton();
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    closeNFTModal();
-    closeFilterDrawer();
-  }
-});
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeNFTModal();
+        closeFilterDrawer();
+      }
+    });
 
     loadAllNFTs();
   </script>
