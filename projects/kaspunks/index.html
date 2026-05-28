@@ -81,6 +81,49 @@
       gap: 10px;
     }
 
+    .mobile-header {
+      display: none;
+    }
+
+    .mobile-links {
+      justify-self: end;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mobile-title {
+      justify-self: center;
+      font-family: "Gamer", sans-serif;
+      font-size: 42px;
+      line-height: 0.9;
+      color: white;
+      letter-spacing: 0.03em;
+    }
+
+    .mobile-back {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      padding: 0 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(180,255,244,0.18);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(116,198,186,0.18) 0%,
+          rgba(116,198,186,0.42) 45%,
+          rgba(116,198,186,0.82) 100%
+        );
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
     .official-text {
       max-width: 980px;
       margin: 0 auto 34px;
@@ -331,24 +374,52 @@
     }
 
     @media (max-width: 767px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .detail-wrap {
+        width: 100%;
+        margin: 0 auto 70px;
+        padding: 0 14px;
+      }
+
+      .mobile-header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 40;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        width: 100%;
+        height: 66px;
+        padding: 10px 14px;
+        background: rgba(7,7,11,0.82);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .mobile-title {
+        font-size: 42px;
+      }
+
+      .mobile-links .icon-btn {
+        width: 36px;
+        height: 36px;
+      }
+
+      .mobile-links .icon-btn img {
+        width: 120%;
+        height: 120%;
+      }
+
       .detail-top {
-        grid-template-columns: 1fr;
-        gap: 18px;
-        text-align: center;
-        padding: 26px 0 20px;
-      }
-
-      .back-link,
-      .top-links,
-      .detail-title {
-        justify-self: center;
-      }
-
-      .detail-title {
-        font-size: 68px;
+        display: none;
       }
 
       .official-text {
+        margin: 0 auto 22px;
         text-align: left;
         font-size: 14px;
         line-height: 1.8;
@@ -356,21 +427,57 @@
 
       .collection-layout {
         grid-template-columns: 1fr;
+        gap: 16px;
       }
 
       .filter-panel {
         position: relative;
         top: auto;
         max-height: none;
+        padding: 18px;
+        border-radius: 22px;
+      }
+
+      .filter-title {
+        font-size: 42px;
+      }
+
+      .nft-panel {
+        padding: 14px;
+        border-radius: 22px;
       }
 
       .nft-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .nft-card {
+        border-radius: 14px;
+      }
+
+      .nft-card p {
+        padding: 8px 6px;
+        font-size: 11px;
+      }
+
+      .modal {
+        z-index: 60;
+        padding: 14px;
       }
 
       .modal-card {
         grid-template-columns: 1fr;
-        padding: 22px;
+        gap: 18px;
+        max-height: calc(100vh - 28px);
+        overflow: auto;
+        padding: 18px;
+        border-radius: 22px;
+      }
+
+      .modal-close {
+        right: 14px;
+        top: 14px;
       }
 
       .modal-info h2 {
@@ -385,6 +492,26 @@
 </head>
 
 <body>
+
+  <header class="mobile-header">
+    <a href="../../index.html" class="mobile-back">Back</a>
+
+    <div class="mobile-title">KASPUNKS</div>
+
+    <div class="mobile-links">
+      <a href="https://kaspa.com/nft/collections/KASPUNKS" target="_blank" class="icon-btn" aria-label="KaspaCom">
+        <img src="../../assets/link/kaspacom.png" alt="KaspaCom">
+      </a>
+
+      <a href="https://t.me/kapunkscommunity" target="_blank" class="icon-btn" aria-label="Telegram">
+        <img src="../../assets/link/telegram.png" alt="Telegram">
+      </a>
+
+      <a href="https://x.com/KasPunks" target="_blank" class="icon-btn" aria-label="X">
+        <img src="../../assets/link/x.png" alt="X">
+      </a>
+    </div>
+  </header>
 
   <div class="detail-wrap">
 
