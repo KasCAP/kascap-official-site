@@ -34,29 +34,46 @@
     .filter-toggle,
     .drawer-close,
     .modal-close {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      border: 1px solid rgba(180,255,244,0.18);
-      background:
-        linear-gradient(
-          180deg,
-          rgba(116,198,186,0.18) 0%,
-          rgba(116,198,186,0.42) 45%,
-          rgba(116,198,186,0.82) 100%
-        );
-      color: white;
-      text-decoration: none;
-      font-weight: 800;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.20);
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-      cursor: pointer;
-    }
+  position: fixed;
+  right: 14px;
+  top: 12px;
+
+  width: 42px;
+  height: 42px;
+
+  z-index: 120;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+  border: 1px solid rgba(180,255,244,0.18);
+
+  backdrop-filter: blur(10px);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(116,198,186,0.18) 0%,
+      rgba(116,198,186,0.42) 45%,
+      rgba(116,198,186,0.82) 100%
+    );
+
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+
+  box-shadow: 0 10px 24px rgba(0,0,0,0.20);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  cursor: pointer;
+}
 
     .back-link:hover,
     .icon-btn:hover,
