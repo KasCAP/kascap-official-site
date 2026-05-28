@@ -2,12 +2,11 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KASHIN</title>
 
-  <link rel="stylesheet" href="../../style.css" />
+  <link rel="stylesheet" href="../../style.css">
 
   <style>
     .detail-wrap {
@@ -15,6 +14,10 @@
       z-index: 2;
       max-width: 1180px;
       margin: 0 auto 90px;
+    }
+
+    .mobile-header {
+      display: none;
     }
 
     .detail-top {
@@ -25,79 +28,47 @@
     }
 
     .back-link,
-.icon-btn,
-.load-more-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  border: 1px solid rgba(180, 255, 244, 0.18);
-  background: linear-gradient(
-    180deg,
-    rgba(116, 198, 186, 0.18) 0%,
-    rgba(116, 198, 186, 0.42) 45%,
-    rgba(116, 198, 186, 0.82) 100%
-  );
-  color: white;
-  text-decoration: none;
-  font-weight: 800;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-  cursor: pointer;
-}
+    .icon-btn,
+    .load-more-btn,
+    .filter-toggle,
+    .drawer-close,
+    .modal-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      border: 1px solid rgba(180,255,244,0.18);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(116,198,186,0.18) 0%,
+          rgba(116,198,186,0.42) 45%,
+          rgba(116,198,186,0.82) 100%
+        );
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.20);
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+      cursor: pointer;
+    }
 
-.modal-close {
-  position: absolute;
-  right: 18px;
-  top: 18px;
-
-  width: 42px;
-  height: 38px;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 12px;
-  border: 1px solid rgba(180, 255, 244, 0.18);
-
-  background: linear-gradient(
-    180deg,
-    rgba(116, 198, 186, 0.18) 0%,
-    rgba(116, 198, 186, 0.42) 45%,
-    rgba(116, 198, 186, 0.82) 100%
-  );
-
-  color: white;
-  font-size: 20px;
-  font-weight: 800;
-
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-
-  cursor: pointer;
-  z-index: 2;
-}
-
-.back-link:hover,
-.icon-btn:hover,
-.load-more-btn:hover,
-.modal-close:hover {
-  transform: translateY(-2px);
-  border-color: rgba(116, 198, 186, 0.55);
-  box-shadow:
-    0 12px 28px rgba(0, 0, 0, 0.26),
-    0 0 18px rgba(116, 198, 186, 0.18);
-}
+    .back-link:hover,
+    .icon-btn:hover,
+    .load-more-btn:hover,
+    .filter-toggle:hover,
+    .drawer-close:hover,
+    .modal-close:hover {
+      transform: translateY(-2px);
+      border-color: rgba(116,198,186,0.55);
+      box-shadow:
+        0 12px 28px rgba(0,0,0,0.26),
+        0 0 18px rgba(116,198,186,0.18);
+    }
 
     .back-link {
       justify-self: start;
@@ -122,12 +93,14 @@
     .icon-btn {
       width: 52px;
       height: 42px;
+      padding: 0;
     }
 
     .icon-btn img {
       width: 120%;
       height: 120%;
       object-fit: contain;
+      display: block;
     }
 
     .official-text {
@@ -137,6 +110,10 @@
       font-size: 16px;
       line-height: 1.9;
       text-align: center;
+    }
+
+    .mobile-filter-bar {
+      display: none;
     }
 
     .collection-layout {
@@ -149,14 +126,15 @@
     .filter-panel,
     .nft-panel {
       border-radius: 28px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.07),
-        rgba(255, 255, 255, 0.025)
-      );
+      border: 1px solid rgba(255,255,255,0.10);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.07),
+          rgba(255,255,255,0.025)
+        );
       backdrop-filter: blur(10px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.28);
     }
 
     .filter-panel {
@@ -174,13 +152,13 @@
     }
 
     .result-count {
-      color: rgba(255, 255, 255, 0.58);
+      color: rgba(255,255,255,0.58);
       font-size: 13px;
       margin-bottom: 16px;
     }
 
     details {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255,255,255,0.08);
       padding: 12px 0;
     }
 
@@ -227,8 +205,8 @@
     .nft-card {
       overflow: hidden;
       border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.045);
       cursor: pointer;
       transition:
         transform 0.2s ease,
@@ -238,8 +216,8 @@
 
     .nft-card:hover {
       transform: translateY(-4px);
-      border-color: rgba(116, 198, 186, 0.55);
-      box-shadow: 0 0 24px rgba(116, 198, 186, 0.1);
+      border-color: rgba(116,198,186,0.55);
+      box-shadow: 0 0 24px rgba(116,198,186,0.10);
     }
 
     .nft-card img {
@@ -247,7 +225,7 @@
       aspect-ratio: 1 / 1;
       object-fit: cover;
       display: block;
-      background: rgba(0, 0, 0, 0.2);
+      background: rgba(0,0,0,0.2);
     }
 
     .nft-card p {
@@ -273,12 +251,12 @@
     .modal {
       position: fixed;
       inset: 0;
-      z-index: 20;
+      z-index: 50;
       display: none;
       align-items: center;
       justify-content: center;
       padding: 24px;
-      background: rgba(0, 0, 0, 0.72);
+      background: rgba(0,0,0,0.72);
       backdrop-filter: blur(10px);
     }
 
@@ -287,32 +265,50 @@
     }
 
     .modal-card {
-  position: relative;
-  display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 28px;
-  width: min(980px, 100%);
-  max-height: 88vh;
-  overflow: auto;
-  padding: 28px;
-  border-radius: 28px;
-  border: 1px solid rgba(116, 198, 186, 0.28);
-  background: rgba(15, 15, 20, 0.95);
-}
+      position: relative;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 28px;
+      width: min(980px, 100%);
+      max-height: 88vh;
+      overflow: auto;
+      padding: 28px;
+      border-radius: 28px;
+      border: 1px solid rgba(116,198,186,0.28);
+      background: rgba(15,15,20,0.95);
+    }
 
-   .modal-image {
-  width: 100%;
-  aspect-ratio: 1 / 1.4;
-  max-height: 620px;
-  border-radius: 20px;
-  object-fit: contain;
-  background: rgba(0, 0, 0, 0.25);
-}
+    .modal-close {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 42px;
+      height: 38px;
+      font-size: 20px;
+      z-index: 2;
+    }
+
+    .modal-image {
+      width: 100%;
+      aspect-ratio: 1 / 1.4;
+      max-height: 620px;
+      border-radius: 20px;
+      object-fit: contain;
+      background: rgba(0,0,0,0.25);
+    }
 
     .modal-info h2 {
       font-family: "Gamer", sans-serif;
       font-size: 56px;
       margin-bottom: 20px;
+      padding-right: 50px;
+    }
+
+    .modal-info p {
+      color: #c0c0cf;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 16px;
     }
 
     .trait-list {
@@ -325,13 +321,13 @@
     .trait {
       padding: 12px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(255,255,255,0.05);
     }
 
     .trait span {
       display: block;
       font-size: 11px;
-      color: rgba(255, 255, 255, 0.45);
+      color: rgba(255,255,255,0.45);
       text-transform: uppercase;
     }
 
@@ -341,43 +337,242 @@
       margin-top: 4px;
     }
 
+    .drawer-backdrop {
+      display: none;
+    }
+
     @media (max-width: 767px) {
-      .detail-top {
-        grid-template-columns: 1fr;
-        gap: 18px;
-        text-align: center;
+      body {
+        padding-top: 74px;
       }
 
-      .back-link,
-      .top-links,
-      .detail-title {
+      .detail-wrap {
+        width: 100%;
+        margin: 0 auto 70px;
+      }
+
+      .mobile-header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 40;
+        display: grid;
+        grid-template-columns: 82px 1fr 82px;
+        align-items: center;
+        width: 100%;
+        height: 64px;
+        padding: 10px 14px;
+        background: rgba(7,7,11,0.78);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .mobile-back {
+        justify-self: start;
+        height: 36px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
+
+      .mobile-title {
         justify-self: center;
+        font-family: "Gamer", sans-serif;
+        font-size: 34px;
+        line-height: 0.9;
+        color: white;
+      }
+
+      .detail-top {
+        display: block;
+        text-align: center;
+        padding: 18px 0 18px;
+      }
+
+      .detail-top .back-link {
+        display: none;
       }
 
       .detail-title {
-        font-size: 68px;
+        display: none;
+      }
+
+      .top-links {
+        justify-content: center;
+        display: flex;
+        margin-top: 10px;
+      }
+
+      .official-text {
+        text-align: left;
+        font-size: 13px;
+        line-height: 1.75;
+        margin: 0 auto 22px;
+        padding: 0 2px;
+      }
+
+      .mobile-filter-bar {
+        position: sticky;
+        top: 64px;
+        z-index: 30;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0 14px;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(7,7,11,0.92),
+            rgba(7,7,11,0.64),
+            rgba(7,7,11,0)
+          );
+        backdrop-filter: blur(8px);
+      }
+
+      .filter-toggle {
+        height: 40px;
+        padding: 0 18px;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+      }
+
+      .mobile-count {
+        color: rgba(255,255,255,0.55);
+        font-size: 12px;
       }
 
       .collection-layout {
-        grid-template-columns: 1fr;
+        display: block;
+      }
+
+      .filter-panel {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+        z-index: 60;
+        max-height: 72vh;
+        overflow: auto;
+        transform: translateY(110%);
+        transition: transform 0.28s ease;
+        border-radius: 26px 26px 0 0;
+        padding: 22px;
+      }
+
+      .filter-panel.is-open {
+        transform: translateY(0);
+      }
+
+      .drawer-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+
+      .drawer-close {
+        width: 42px;
+        height: 38px;
+        font-size: 18px;
+      }
+
+      .drawer-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 55;
+        display: none;
+        background: rgba(0,0,0,0.55);
+        backdrop-filter: blur(5px);
+      }
+
+      .drawer-backdrop.is-visible {
+        display: block;
+      }
+
+      .nft-panel {
+        padding: 14px;
+        border-radius: 22px;
       }
 
       .nft-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .nft-card {
+        border-radius: 16px;
+      }
+
+      .nft-card p {
+        font-size: 11px;
+        padding: 8px;
+      }
+
+      .modal {
+        align-items: stretch;
+        justify-content: stretch;
+        padding: 0;
       }
 
       .modal-card {
-        grid-template-columns: 1fr;
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        overflow: auto;
+        border-radius: 0;
+        padding: 74px 18px 34px;
+        border: none;
+        background: rgba(10,10,14,0.96);
+      }
+
+      .modal-close {
+        position: fixed;
+        right: 14px;
+        top: 14px;
+        width: 46px;
+        height: 42px;
+        z-index: 70;
+      }
+
+      .modal-image {
+        width: 100%;
+        max-height: none;
+        aspect-ratio: auto;
+        object-fit: contain;
+        border-radius: 18px;
+        margin-bottom: 22px;
+      }
+
+      .modal-info h2 {
+        font-size: 46px;
+        padding-right: 0;
+      }
+
+      .modal-info p {
+        font-size: 13px;
       }
 
       .trait-list {
         grid-template-columns: 1fr;
+      }
+
+      .trait {
+        padding: 16px;
+        border-radius: 18px;
       }
     }
   </style>
 </head>
 
 <body>
+
+  <div class="mobile-header">
+    <a href="../../index.html" class="back-link mobile-back">Back</a>
+    <div class="mobile-title">KASHIN</div>
+    <div></div>
+  </div>
 
   <div class="detail-wrap">
 
@@ -389,16 +584,16 @@
 
       <div class="top-links">
 
-        <a href="https://kaspa.com/nft/collections/KASHIN" target="_blank" class="icon-btn">
-          <img src="../../assets/link/kaspacom.png" alt="">
+        <a href="https://kaspa.com/nft/collections/KASHIN" target="_blank" class="icon-btn" aria-label="KaspaCom">
+          <img src="../../assets/link/kaspacom.png" alt="KaspaCom">
         </a>
 
-        <a href="https://t.me/Kashin3397" target="_blank" class="icon-btn">
-          <img src="../../assets/link/telegram.png" alt="">
+        <a href="https://t.me/Kashin3397" target="_blank" class="icon-btn" aria-label="Telegram">
+          <img src="../../assets/link/telegram.png" alt="Telegram">
         </a>
 
-        <a href="https://x.com/KASHIN3397" target="_blank" class="icon-btn">
-          <img src="../../assets/link/x.png" alt="">
+        <a href="https://x.com/KASHIN3397" target="_blank" class="icon-btn" aria-label="X">
+          <img src="../../assets/link/x.png" alt="X">
         </a>
 
       </div>
@@ -410,54 +605,52 @@
       The collection is built around a TCG-inspired structure featuring multiple rarity classes, cycles, clans, and masked beings drawn from a fictional mythological universe.
     </p>
 
+    <div class="mobile-filter-bar">
+      <button id="filterToggle" class="filter-toggle">FILTER</button>
+      <span id="mobileCount" class="mobile-count">Loading...</span>
+    </div>
+
     <section class="collection-layout">
 
-      <aside class="filter-panel">
-        <h2 class="filter-title">FILTER</h2>
+      <aside id="filterPanel" class="filter-panel">
+        <div class="drawer-head">
+          <h2 class="filter-title">FILTER</h2>
+          <button id="drawerClose" class="drawer-close">×</button>
+        </div>
+
         <p id="resultCount" class="result-count">Loading metadata...</p>
         <div id="filters"></div>
       </aside>
 
       <section class="nft-panel">
-
         <div id="nftGrid" class="nft-grid"></div>
 
         <div class="load-more-wrap">
-          <button id="loadMoreBtn" class="load-more-btn">
-            LOAD MORE
-          </button>
+          <button id="loadMoreBtn" class="load-more-btn">LOAD MORE</button>
         </div>
-
       </section>
 
     </section>
 
   </div>
 
+  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+
   <div id="nftModal" class="modal">
-
     <div class="modal-card">
-
       <button id="modalClose" class="modal-close">×</button>
 
-      <img id="modalImage" class="modal-image" src="" alt="" />
+      <img id="modalImage" class="modal-image" src="" alt="KASHIN NFT">
 
       <div class="modal-info">
-
         <h2 id="modalName"></h2>
-
         <p id="modalDescription"></p>
-
         <div id="modalTraits" class="trait-list"></div>
-
       </div>
-
     </div>
-
   </div>
 
   <script>
-
     const IMAGE_CID = "bafybeifceon2zwpv6pgprysit4knboomyj52qrrild2fdslej7666pboiq";
     const METADATA_CID = "bafybeibitnf2db66a5m7q3rne2riicjrcjdn77u4vtptuj7vzixwlg3nku";
 
@@ -475,7 +668,13 @@
     const nftGrid = document.getElementById("nftGrid");
     const filtersEl = document.getElementById("filters");
     const resultCount = document.getElementById("resultCount");
+    const mobileCount = document.getElementById("mobileCount");
     const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+    const filterPanel = document.getElementById("filterPanel");
+    const filterToggle = document.getElementById("filterToggle");
+    const drawerClose = document.getElementById("drawerClose");
+    const drawerBackdrop = document.getElementById("drawerBackdrop");
 
     const nftModal = document.getElementById("nftModal");
     const modalClose = document.getElementById("modalClose");
@@ -490,7 +689,6 @@
     let selectedFilters = {};
 
     function imageCandidates(id) {
-
       const padded = String(id).padStart(4, "0");
 
       return [
@@ -505,7 +703,6 @@
     }
 
     function getAttribute(metadata, key) {
-
       if (!metadata || !Array.isArray(metadata.attributes)) return "";
 
       const found = metadata.attributes.find((attr) => {
@@ -516,11 +713,8 @@
     }
 
     async function loadMetadata(id) {
-
       try {
-
         const response = await fetch(metadataUrl(id));
-
         if (!response.ok) throw new Error("not found");
 
         const metadata = await response.json();
@@ -537,9 +731,7 @@
         });
 
         return nft;
-
       } catch (error) {
-
         return {
           id,
           name: `KASHIN #${id}`,
@@ -555,47 +747,34 @@
     }
 
     async function loadAllNFTs() {
-
       const ids = Array.from({ length: TOTAL_SUPPLY }, (_, i) => i + 1);
-
       const batchSize = 50;
-
       const results = [];
 
       for (let i = 0; i < ids.length; i += batchSize) {
-
         const batch = ids.slice(i, i + batchSize);
-
-        const batchResults = await Promise.all(
-          batch.map(loadMetadata)
-        );
+        const batchResults = await Promise.all(batch.map(loadMetadata));
 
         results.push(...batchResults);
-
-        resultCount.textContent =
-          `Loading metadata... ${results.length} / ${TOTAL_SUPPLY}`;
+        resultCount.textContent = `Loading metadata... ${results.length} / ${TOTAL_SUPPLY}`;
+        mobileCount.textContent = `Loading... ${results.length}`;
       }
 
       allNFTs = results;
       currentItems = allNFTs;
 
       buildFilters();
-
       renderNFTs();
     }
 
     function buildFilters() {
-
       filtersEl.innerHTML = "";
 
       FILTER_KEYS.forEach((key) => {
-
         const values = [...new Set(
-
           allNFTs
             .map((nft) => nft[key])
             .filter((value) => value && value.trim() !== "")
-
         )].sort();
 
         selectedFilters[key] = new Set();
@@ -610,7 +789,6 @@
         options.className = "filter-options";
 
         values.forEach((value) => {
-
           const label = document.createElement("label");
           label.className = "filter-option";
 
@@ -619,7 +797,6 @@
           checkbox.value = value;
 
           checkbox.addEventListener("change", () => {
-
             if (checkbox.checked) {
               selectedFilters[key].add(value);
             } else {
@@ -627,57 +804,42 @@
             }
 
             applyFilters();
-
           });
 
           label.appendChild(checkbox);
           label.appendChild(document.createTextNode(value));
-
           options.appendChild(label);
-
         });
 
         details.appendChild(summary);
         details.appendChild(options);
-
         filtersEl.appendChild(details);
-
       });
     }
 
     function applyFilters() {
-
       visibleCount = ITEMS_PER_LOAD;
 
       currentItems = allNFTs.filter((nft) => {
-
         return FILTER_KEYS.every((key) => {
-
           if (selectedFilters[key].size === 0) return true;
-
           return selectedFilters[key].has(nft[key]);
-
         });
-
       });
 
       renderNFTs();
     }
 
     function renderNFTs() {
-
       nftGrid.innerHTML = "";
 
-      const visibleItems =
-        currentItems.slice(0, visibleCount);
+      const visibleItems = currentItems.slice(0, visibleCount);
 
-      resultCount.textContent =
-        `${currentItems.length} / ${TOTAL_SUPPLY} NFTs`;
+      resultCount.textContent = `${currentItems.length} / ${TOTAL_SUPPLY} NFTs`;
+      mobileCount.textContent = `${currentItems.length} NFTs`;
 
       visibleItems.forEach((nft) => {
-
         const urls = imageCandidates(nft.id);
-
         const card = document.createElement("article");
 
         card.className = "nft-card";
@@ -695,15 +857,11 @@
         const img = card.querySelector("img");
 
         img.onerror = () => {
-
           let step = Number(img.dataset.step);
-
           step++;
 
           if (step < urls.length) {
-
             img.dataset.step = step;
-
             img.src = urls[step];
           }
         };
@@ -713,7 +871,6 @@
         });
 
         nftGrid.appendChild(card);
-
       });
 
       if (visibleCount >= currentItems.length) {
@@ -724,73 +881,84 @@
     }
 
     function openNFTModal(nft) {
-  const urls = imageCandidates(nft.id);
+      const urls = imageCandidates(nft.id);
 
-  modalImage.dataset.step = "0";
-  modalImage.src = urls[0];
+      modalImage.dataset.step = "0";
+      modalImage.src = urls[0];
 
-  modalImage.onerror = () => {
-    let step = Number(modalImage.dataset.step);
-    step++;
+      modalImage.onerror = () => {
+        let step = Number(modalImage.dataset.step);
+        step++;
 
-    if (step < urls.length) {
-      modalImage.dataset.step = step;
-      modalImage.src = urls[step];
+        if (step < urls.length) {
+          modalImage.dataset.step = step;
+          modalImage.src = urls[step];
+        }
+      };
+
+      modalName.textContent = nft.name || `KASHIN #${nft.id}`;
+      modalDescription.textContent = nft.description || "";
+
+      modalTraits.innerHTML = "";
+
+      nft.attributes.forEach((item) => {
+        const trait = document.createElement("div");
+        trait.className = "trait";
+
+        trait.innerHTML = `
+          <span>${item.trait_type || "Trait"}</span>
+          <strong>${item.value || "-"}</strong>
+        `;
+
+        modalTraits.appendChild(trait);
+      });
+
+      nftModal.classList.add("is-visible");
+      document.body.style.overflow = "hidden";
     }
-  };
-
-  modalName.textContent = nft.name || `KASHIN #${nft.id}`;
-  modalDescription.textContent = nft.description || "";
-
-  modalTraits.innerHTML = "";
-
-  nft.attributes.forEach((item) => {
-    const trait = document.createElement("div");
-    trait.className = "trait";
-
-    trait.innerHTML = `
-      <span>${item.trait_type || "Trait"}</span>
-      <strong>${item.value || "-"}</strong>
-    `;
-
-    modalTraits.appendChild(trait);
-  });
-
-  nftModal.classList.add("is-visible");
-}
 
     function closeNFTModal() {
       nftModal.classList.remove("is-visible");
+      document.body.style.overflow = "";
+    }
+
+    function openFilterDrawer() {
+      filterPanel.classList.add("is-open");
+      drawerBackdrop.classList.add("is-visible");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeFilterDrawer() {
+      filterPanel.classList.remove("is-open");
+      drawerBackdrop.classList.remove("is-visible");
+      document.body.style.overflow = "";
     }
 
     loadMoreBtn.addEventListener("click", () => {
-
       visibleCount += ITEMS_PER_LOAD;
-
       renderNFTs();
-
     });
 
     modalClose.addEventListener("click", closeNFTModal);
 
     nftModal.addEventListener("click", (event) => {
-
       if (event.target === nftModal) {
         closeNFTModal();
       }
-
     });
 
-    document.addEventListener("keydown", (event) => {
+    filterToggle.addEventListener("click", openFilterDrawer);
+    drawerClose.addEventListener("click", closeFilterDrawer);
+    drawerBackdrop.addEventListener("click", closeFilterDrawer);
 
+    document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         closeNFTModal();
+        closeFilterDrawer();
       }
-
     });
 
     loadAllNFTs();
-
   </script>
 
 </body>
