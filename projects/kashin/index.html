@@ -34,46 +34,29 @@
     .filter-toggle,
     .drawer-close,
     .modal-close {
-  position: fixed;
-  right: 14px;
-  top: 12px;
-
-  width: 42px;
-  height: 42px;
-
-  z-index: 120;
-
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 12px;
-  border: 1px solid rgba(180,255,244,0.18);
-
-  backdrop-filter: blur(10px);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(116,198,186,0.18) 0%,
-      rgba(116,198,186,0.42) 45%,
-      rgba(116,198,186,0.82) 100%
-    );
-
-  color: white;
-  text-decoration: none;
-  font-weight: 800;
-
-  box-shadow: 0 10px 24px rgba(0,0,0,0.20);
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-
-  cursor: pointer;
-}
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      border: 1px solid rgba(180,255,244,0.18);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(116,198,186,0.18) 0%,
+          rgba(116,198,186,0.42) 45%,
+          rgba(116,198,186,0.82) 100%
+        );
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.20);
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+      cursor: pointer;
+    }
 
     .back-link:hover,
     .icon-btn:hover,
@@ -171,75 +154,61 @@
       display: none;
     }
 
-    .filter-title {
-      font-family: "Gamer", sans-serif;
-      font-size: 48px;
+    .filter-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
       margin-bottom: 18px;
     }
 
-   .filter-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 18px;
-}
+    .filter-title {
+      font-family: "Gamer", sans-serif;
+      font-size: 48px;
+      margin-bottom: 0;
+    }
 
-.filter-title {
-  margin-bottom: 0;
-}
+    .clear-filters-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(180,255,244,0.18);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(116,198,186,0.18) 0%,
+          rgba(116,198,186,0.42) 45%,
+          rgba(116,198,186,0.82) 100%
+        );
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
 
-.clear-filters-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+    .clear-filters-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(116,198,186,0.55);
+      box-shadow:
+        0 10px 22px rgba(0,0,0,0.24),
+        0 0 14px rgba(116,198,186,0.16);
+    }
 
-  height: 32px;
-  padding: 0 12px;
-
-  border-radius: 10px;
-  border: 1px solid rgba(180,255,244,0.18);
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(116,198,186,0.18) 0%,
-      rgba(116,198,186,0.42) 45%,
-      rgba(116,198,186,0.82) 100%
-    );
-
-  color: white;
-
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-
-  cursor: pointer;
-
-  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
-
-  transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.clear-filters-btn:hover {
-  transform: translateY(-2px);
-
-  border-color: rgba(116,198,186,0.55);
-
-  box-shadow:
-    0 10px 22px rgba(0,0,0,0.24),
-    0 0 14px rgba(116,198,186,0.16);
-}
-
-.clear-filters-btn:disabled {
-  opacity: 0.35;
-  cursor: default;
-  transform: none;
-  box-shadow: none;
-}
+    .clear-filters-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+      transform: none;
+      box-shadow: none;
+    }
 
     .result-count {
       color: rgba(255,255,255,0.58);
@@ -432,67 +401,57 @@
     }
 
     @media (max-width: 767px) {
-  body {
-    padding-top: 70px;
-  }
+      body {
+        padding-top: 70px;
+      }
 
-.filter-head {
-  margin-bottom: 12px;
-}
+      .detail-wrap {
+        position: static;
+        z-index: auto;
+        width: 100%;
+        margin: 0 auto 70px;
+      }
 
-.clear-filters-btn {
-  height: 34px;
-  padding: 0 13px;
-}
+      .mobile-header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 90;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 66px;
+        padding: 10px 14px;
+        background: rgba(7,7,11,0.82);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
 
+      .mobile-back {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 36px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
 
-  .detail-wrap {
-    position: static;
-    z-index: auto;
-    width: 100%;
-    margin: 0 auto 70px;
-  }
+      .mobile-back:hover {
+        transform: translateY(-50%);
+      }
 
-  .mobile-header {
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 90;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 66px;
-    padding: 10px 14px;
-    background: rgba(7,7,11,0.82);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-
-  .mobile-back {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 36px;
-    padding: 0 14px;
-    font-size: 13px;
-  }
-
-  .mobile-back:hover {
-    transform: translateY(-50%);
-  }
-
-  .mobile-title {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    font-family: "Gamer", sans-serif;
-    font-size: 42px;
-    line-height: 0.9;
-    color: white;
-  }
+      .mobile-title {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Gamer", sans-serif;
+        font-size: 42px;
+        line-height: 0.9;
+        color: white;
+      }
 
       .detail-top {
         display: block;
@@ -587,6 +546,15 @@
         margin-bottom: 12px;
       }
 
+      .filter-head {
+        margin-bottom: 12px;
+      }
+
+      .clear-filters-btn {
+        height: 34px;
+        padding: 0 13px;
+      }
+
       .drawer-close {
         display: inline-flex;
         width: 42px;
@@ -630,6 +598,7 @@
         align-items: stretch;
         justify-content: stretch;
         padding: 0;
+        z-index: 100;
       }
 
       .modal-card {
@@ -645,14 +614,16 @@
       }
 
       .modal-close {
-  position: absolute;
-  right: 14px;
-  top: 14px;
-  width: 46px;
-  height: 42px;
-  z-index: 70;
-  display: inline-flex;
-}
+        position: fixed;
+        right: 14px;
+        top: 12px;
+        width: 42px;
+        height: 42px;
+        z-index: 120;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
 
       .modal-image {
         width: 100%;
@@ -732,16 +703,18 @@
 
       <aside id="filterPanel" class="filter-panel">
         <div class="drawer-head">
-  <div class="filter-head">
-    <h2 class="filter-title">FILTER</h2>
 
-    <button id="clearFiltersBtn" class="clear-filters-btn" type="button" disabled>
-      CLEAR
-    </button>
-  </div>
+          <div class="filter-head">
+            <h2 class="filter-title">FILTER</h2>
 
-  <button id="drawerClose" class="drawer-close">▼</button>
-</div>
+            <button id="clearFiltersBtn" class="clear-filters-btn" type="button" disabled>
+              CLEAR
+            </button>
+          </div>
+
+          <button id="drawerClose" class="drawer-close">▼</button>
+
+        </div>
 
         <p id="resultCount" class="result-count">Loading metadata...</p>
         <div id="filters"></div>
@@ -893,13 +866,14 @@
       renderNFTs();
       updateClearButton();
     }
-function updateClearButton() {
-  const hasActiveFilter = FILTER_KEYS.some((key) => {
-    return selectedFilters[key] && selectedFilters[key].size > 0;
-  });
 
-  clearFiltersBtn.disabled = !hasActiveFilter;
-}
+    function updateClearButton() {
+      const hasActiveFilter = FILTER_KEYS.some((key) => {
+        return selectedFilters[key] && selectedFilters[key].size > 0;
+      });
+
+      clearFiltersBtn.disabled = !hasActiveFilter;
+    }
 
     function buildFilters() {
       filtersEl.innerHTML = "";
@@ -952,18 +926,18 @@ function updateClearButton() {
     }
 
     function applyFilters() {
-  visibleCount = ITEMS_PER_LOAD;
+      visibleCount = ITEMS_PER_LOAD;
 
-  currentItems = allNFTs.filter((nft) => {
-    return FILTER_KEYS.every((key) => {
-      if (selectedFilters[key].size === 0) return true;
-      return selectedFilters[key].has(nft[key]);
-    });
-  });
+      currentItems = allNFTs.filter((nft) => {
+        return FILTER_KEYS.every((key) => {
+          if (selectedFilters[key].size === 0) return true;
+          return selectedFilters[key].has(nft[key]);
+        });
+      });
 
-  renderNFTs();
-  updateClearButton();
-}
+      renderNFTs();
+      updateClearButton();
+    }
 
     function renderNFTs() {
       nftGrid.innerHTML = "";
@@ -1082,34 +1056,34 @@ function updateClearButton() {
       }
     });
 
-  filterToggle.addEventListener("click", openFilterDrawer);
-drawerClose.addEventListener("click", closeFilterDrawer);
-drawerBackdrop.addEventListener("click", closeFilterDrawer);
+    filterToggle.addEventListener("click", openFilterDrawer);
+    drawerClose.addEventListener("click", closeFilterDrawer);
+    drawerBackdrop.addEventListener("click", closeFilterDrawer);
 
-clearFiltersBtn.addEventListener("click", () => {
-  FILTER_KEYS.forEach((key) => {
-    selectedFilters[key].clear();
-  });
+    clearFiltersBtn.addEventListener("click", () => {
+      FILTER_KEYS.forEach((key) => {
+        selectedFilters[key].clear();
+      });
 
-  document
-    .querySelectorAll('#filters input[type="checkbox"]')
-    .forEach((checkbox) => {
-      checkbox.checked = false;
+      document
+        .querySelectorAll('#filters input[type="checkbox"]')
+        .forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+      visibleCount = ITEMS_PER_LOAD;
+      currentItems = allNFTs;
+
+      renderNFTs();
+      updateClearButton();
     });
 
-  visibleCount = ITEMS_PER_LOAD;
-  currentItems = allNFTs;
-
-  renderNFTs();
-  updateClearButton();
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape") {
-    closeNFTModal();
-    closeFilterDrawer();
-  }
-});
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeNFTModal();
+        closeFilterDrawer();
+      }
+    });
 
     loadAllNFTs();
   </script>
