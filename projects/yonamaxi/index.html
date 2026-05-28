@@ -4,12 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>YONAMAXI</title>
 
   <link rel="stylesheet" href="../../style.css">
 
   <style>
-    .detail-wrap { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto 90px; }
+    .detail-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 1180px;
+      margin: 0 auto 90px;
+    }
+
+    .mobile-header {
+      display: none;
+    }
 
     .detail-top {
       display: grid;
@@ -19,47 +29,65 @@
     }
 
     .back-link,
-    .icon-btn {
+    .icon-btn,
+    .load-more-btn,
+    .filter-toggle,
+    .drawer-close,
+    .modal-close {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 42px;
       border-radius: 12px;
       border: 1px solid rgba(180,255,244,0.18);
-      background: linear-gradient(180deg, rgba(116,198,186,0.18) 0%, rgba(116,198,186,0.42) 45%, rgba(116,198,186,0.82) 100%);
+      background:
+        linear-gradient(
+          180deg,
+          rgba(116,198,186,0.18) 0%,
+          rgba(116,198,186,0.42) 45%,
+          rgba(116,198,186,0.82) 100%
+        );
       color: white;
       text-decoration: none;
       font-weight: 800;
       box-shadow: 0 10px 24px rgba(0,0,0,0.20);
-      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .back-link:hover,
+    .icon-btn:hover,
+    .load-more-btn:hover,
+    .filter-toggle:hover,
+    .drawer-close:hover,
+    .modal-close:hover {
+      transform: translateY(-2px);
+      border-color: rgba(116,198,186,0.55);
+      box-shadow:
+        0 12px 28px rgba(0,0,0,0.26),
+        0 0 18px rgba(116,198,186,0.18);
     }
 
     .back-link {
       justify-self: start;
+      height: 42px;
       padding: 0 20px;
-      letter-spacing: 0.05em;
-    }
-
-    .back-link:hover,
-    .icon-btn:hover {
-      transform: translateY(-2px);
-      border-color: rgba(116,198,186,0.55);
-      background: linear-gradient(180deg, rgba(116,198,186,0.28) 0%, rgba(116,198,186,0.58) 45%, rgba(116,198,186,0.96) 100%);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.26), 0 0 18px rgba(116,198,186,0.18);
     }
 
     .detail-title {
       justify-self: center;
       font-family: "Gamer", sans-serif;
       font-size: 96px;
-      line-height: 0.9;
       color: white;
+      line-height: 0.9;
     }
 
     .top-links {
       justify-self: end;
       display: flex;
-      align-items: center;
       gap: 10px;
     }
 
@@ -82,8 +110,11 @@
       color: #d7d7e6;
       font-size: 16px;
       line-height: 1.9;
-      letter-spacing: 0.02em;
       text-align: center;
+    }
+
+    .mobile-filter-bar {
+      display: none;
     }
 
     .collection-layout {
@@ -97,7 +128,12 @@
     .nft-panel {
       border-radius: 28px;
       border: 1px solid rgba(255,255,255,0.10);
-      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,0.07),
+          rgba(255,255,255,0.025)
+        );
       backdrop-filter: blur(10px);
       box-shadow: 0 20px 60px rgba(0,0,0,0.28);
     }
@@ -110,12 +146,83 @@
       overflow: auto;
     }
 
+    .drawer-head {
+      display: block;
+    }
+
+    .drawer-close {
+      display: none;
+    }
+
     .filter-title {
       font-family: "Gamer", sans-serif;
       font-size: 48px;
-      line-height: 0.9;
       margin-bottom: 18px;
     }
+
+   .filter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.filter-title {
+  margin-bottom: 0;
+}
+
+.clear-filters-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 32px;
+  padding: 0 12px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(180,255,244,0.18);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(116,198,186,0.18) 0%,
+      rgba(116,198,186,0.42) 45%,
+      rgba(116,198,186,0.82) 100%
+    );
+
+  color: white;
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.clear-filters-btn:hover {
+  transform: translateY(-2px);
+
+  border-color: rgba(116,198,186,0.55);
+
+  box-shadow:
+    0 10px 22px rgba(0,0,0,0.24),
+    0 0 14px rgba(116,198,186,0.16);
+}
+
+.clear-filters-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
 
     .result-count {
       color: rgba(255,255,255,0.58);
@@ -132,9 +239,12 @@
       cursor: pointer;
       color: white;
       font-weight: 800;
-      letter-spacing: 0.04em;
       text-transform: uppercase;
       list-style: none;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
     }
 
     .filter-options {
@@ -151,9 +261,13 @@
       font-size: 13px;
     }
 
-    .filter-option input { accent-color: #74c6ba; }
+    .filter-option input {
+      accent-color: #74c6ba;
+    }
 
-    .nft-panel { padding: 22px; }
+    .nft-panel {
+      padding: 22px;
+    }
 
     .nft-grid {
       display: grid;
@@ -167,7 +281,10 @@
       border: 1px solid rgba(255,255,255,0.10);
       background: rgba(255,255,255,0.045);
       cursor: pointer;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
     }
 
     .nft-card:hover {
@@ -178,9 +295,10 @@
 
     .nft-card img {
       width: 100%;
-      display: block;
       aspect-ratio: 1 / 1;
       object-fit: cover;
+      display: block;
+      background: rgba(0,0,0,0.2);
     }
 
     .nft-card p {
@@ -191,10 +309,22 @@
       text-align: center;
     }
 
+    .load-more-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .load-more-btn {
+      height: 46px;
+      padding: 0 28px;
+      font-size: 13px;
+    }
+
     .modal {
       position: fixed;
       inset: 0;
-      z-index: 20;
+      z-index: 50;
       display: none;
       align-items: center;
       justify-content: center;
@@ -203,19 +333,22 @@
       backdrop-filter: blur(10px);
     }
 
-    .modal.is-visible { display: flex; }
+    .modal.is-visible {
+      display: flex;
+    }
 
     .modal-card {
       position: relative;
       display: grid;
-      grid-template-columns: 360px 1fr;
+      grid-template-columns: 420px 1fr;
       gap: 28px;
-      width: min(920px, 100%);
+      width: min(980px, 100%);
+      max-height: 88vh;
+      overflow: auto;
       padding: 28px;
       border-radius: 28px;
       border: 1px solid rgba(116,198,186,0.28);
-      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.035));
-      box-shadow: 0 30px 90px rgba(0,0,0,0.55), 0 0 40px rgba(116,198,186,0.10);
+      background: rgba(15,15,20,0.95);
     }
 
     .modal-close {
@@ -224,27 +357,24 @@
       top: 18px;
       width: 42px;
       height: 38px;
-      border: 1px solid rgba(180,255,244,0.18);
-      border-radius: 12px;
-      background: linear-gradient(180deg, rgba(116,198,186,0.18) 0%, rgba(116,198,186,0.42) 45%, rgba(116,198,186,0.82) 100%);
-      color: white;
       font-size: 20px;
-      cursor: pointer;
+      z-index: 2;
     }
 
     .modal-image {
       width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 22px;
-      object-fit: cover;
+      aspect-ratio: 1 / 1.4;
+      max-height: 620px;
+      border-radius: 20px;
+      object-fit: contain;
+      background: rgba(0,0,0,0.25);
     }
 
     .modal-info h2 {
       font-family: "Gamer", sans-serif;
-      font-size: 64px;
-      line-height: 0.9;
-      margin-bottom: 18px;
-      padding-right: 48px;
+      font-size: 56px;
+      margin-bottom: 20px;
+      padding-right: 50px;
     }
 
     .modal-info p {
@@ -264,68 +394,286 @@
     .trait {
       padding: 12px;
       border-radius: 14px;
-      background: rgba(255,255,255,0.055);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
     }
 
     .trait span {
       display: block;
-      color: rgba(255,255,255,0.45);
       font-size: 11px;
+      color: rgba(255,255,255,0.45);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
     }
 
     .trait strong {
       display: block;
       color: white;
-      font-size: 14px;
-      margin-top: 3px;
+      margin-top: 4px;
+    }
+
+    .drawer-backdrop {
+      display: none;
     }
 
     @media (max-width: 767px) {
+  body {
+    padding-top: 70px;
+  }
+
+.filter-head {
+  margin-bottom: 12px;
+}
+
+.clear-filters-btn {
+  height: 34px;
+  padding: 0 13px;
+}
+
+
+  .detail-wrap {
+    position: static;
+    z-index: auto;
+    width: 100%;
+    margin: 0 auto 70px;
+  }
+
+  .mobile-header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 90;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 66px;
+    padding: 10px 14px;
+    background: rgba(7,7,11,0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .mobile-back {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 36px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  .mobile-back:hover {
+    transform: translateY(-50%);
+  }
+
+  .mobile-title {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Gamer", sans-serif;
+    font-size: 42px;
+    line-height: 0.9;
+    color: white;
+  }
+
       .detail-top {
-        grid-template-columns: 1fr;
-        gap: 18px;
+        display: block;
         text-align: center;
-        padding: 26px 0 20px;
+        padding: 18px 0 18px;
       }
 
-      .back-link,
-      .top-links,
-      .detail-title { justify-self: center; }
+      .detail-top .back-link,
+      .detail-title {
+        display: none;
+      }
 
-      .detail-title { font-size: 58px; }
+      .top-links {
+        justify-content: center;
+        display: flex;
+        margin-top: 8px;
+      }
 
       .official-text {
         text-align: left;
-        font-size: 14px;
-        line-height: 1.8;
+        font-size: 13px;
+        line-height: 1.75;
+        margin: 0 auto 22px;
+        padding: 0 2px;
       }
 
-      .collection-layout { grid-template-columns: 1fr; }
+      .mobile-filter-bar {
+        position: sticky;
+        top: 66px;
+        z-index: 30;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0 14px;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(7,7,11,0.94),
+            rgba(7,7,11,0.72),
+            rgba(7,7,11,0)
+          );
+        backdrop-filter: blur(8px);
+      }
+
+      .filter-toggle {
+        height: 40px;
+        padding: 0 18px;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+      }
+
+      .mobile-count {
+        color: rgba(255,255,255,0.55);
+        font-size: 12px;
+      }
+
+      .collection-layout {
+        display: block;
+      }
 
       .filter-panel {
-        position: relative;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
         top: auto;
-        max-height: none;
+        z-index: 60;
+        max-height: 74vh;
+        overflow: auto;
+        transform: translateY(110%);
+        transition: transform 0.28s ease;
+        border-radius: 26px 26px 0 0;
+        padding: 22px;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(18,32,32,0.99),
+            rgba(8,12,16,0.99)
+          );
+        backdrop-filter: none;
       }
 
-      .nft-grid { grid-template-columns: repeat(2, 1fr); }
+      .filter-panel.is-open {
+        transform: translateY(0);
+      }
+
+      .drawer-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+
+      .drawer-close {
+        display: inline-flex;
+        width: 42px;
+        height: 38px;
+        font-size: 18px;
+      }
+
+      .drawer-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 55;
+        display: none;
+        background: rgba(0,0,0,0.66);
+        backdrop-filter: blur(4px);
+      }
+
+      .drawer-backdrop.is-visible {
+        display: block;
+      }
+
+      .nft-panel {
+        padding: 14px;
+        border-radius: 22px;
+      }
+
+      .nft-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .nft-card {
+        border-radius: 16px;
+      }
+
+      .nft-card p {
+        font-size: 11px;
+        padding: 8px;
+      }
+
+      .modal {
+        align-items: stretch;
+        justify-content: stretch;
+        padding: 0;
+      }
 
       .modal-card {
-        grid-template-columns: 1fr;
-        padding: 22px;
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        overflow: auto;
+        border-radius: 0;
+        padding: 74px 18px 34px;
+        border: none;
+        background: rgba(10,10,14,0.97);
       }
 
-      .modal-info h2 { font-size: 48px; }
+      .modal-close {
+  position: fixed;
+  right: 14px;
+  top: 14px;
+  width: 46px;
+  height: 42px;
+  z-index: 70;
+  display: inline-flex;
+}
 
-      .trait-list { grid-template-columns: 1fr; }
+      .modal-image {
+        width: 100%;
+        max-height: none;
+        aspect-ratio: auto;
+        object-fit: contain;
+        border-radius: 18px;
+        margin-bottom: 22px;
+      }
+
+      .modal-info h2 {
+        font-size: 46px;
+        padding-right: 0;
+      }
+
+      .modal-info p {
+        font-size: 13px;
+      }
+
+      .trait-list {
+        grid-template-columns: 1fr;
+      }
+
+      .trait {
+        padding: 16px;
+        border-radius: 18px;
+      }
     }
   </style>
 </head>
 
 <body>
+
+  <div class="mobile-header">
+    <a href="../../index.html" class="back-link mobile-back">Back</a>
+    <div class="mobile-title">YONAMAXI</div>
+    <div></div>
+  </div>
 
   <div class="detail-wrap">
 
@@ -335,50 +683,74 @@
 
       <h1 class="detail-title">YONAMAXI</h1>
 
-   <div class="top-links">
+      <div class="top-links">
 
-  <a href="https://kaspa.com/nft/collections/YONAMAXI" target="_blank" class="icon-btn" aria-label="KaspaCom">
+        <a href="https://kaspa.com/nft/collections/YONAMAXI" target="_blank" class="icon-btn" aria-label="KaspaCom">
+          <img src="../../assets/link/kaspacom.png" alt="KaspaCom">
+        </a>
 
-    <img src="../../assets/link/kaspacom.png" alt="KaspaCom">
+        <a href="https://t.me/kapunkscommunity/27911" target="_blank" class="icon-btn" aria-label="Telegram">
+          <img src="../../assets/link/telegram.png" alt="Telegram">
+        </a>
 
-  </a>
+        <a href="https://x.com/Kaspa_CAP" target="_blank" class="icon-btn" aria-label="X">
+          <img src="../../assets/link/x.png" alt="X">
+        </a>
 
-  <a href="https://t.me/kapunkscommunity/27911" target="_blank" class="icon-btn" aria-label="Telegram">
+      </div>
 
-    <img src="../../assets/link/telegram.png" alt="Telegram">
-
-  </a>
-
-</div>
+    </div>
 
     <p class="official-text">
-      YonaMaxi is a special limited-edition NFT collaboration of 250 pieces, created by the joint team of YONATOSHI and KasCAP.
+      <strong><em>YonaMaxi</em></strong> is a special limited-edition NFT collaboration of 250 pieces, created by the joint team of YONATOSHI and KasCAP.
     </p>
+
+    <div class="mobile-filter-bar">
+      <button id="filterToggle" class="filter-toggle">FILTER</button>
+      <span id="mobileCount" class="mobile-count">Loading...</span>
+    </div>
 
     <section class="collection-layout">
 
-      <aside class="filter-panel">
-        <h2 class="filter-title">FILTER</h2>
+      <aside id="filterPanel" class="filter-panel">
+        <div class="drawer-head">
+  <div class="filter-head">
+    <h2 class="filter-title">FILTER</h2>
+
+    <button id="clearFiltersBtn" class="clear-filters-btn" type="button" disabled>
+      CLEAR
+    </button>
+  </div>
+
+  <button id="drawerClose" class="drawer-close">▼</button>
+</div>
+
         <p id="resultCount" class="result-count">Loading metadata...</p>
         <div id="filters"></div>
       </aside>
 
       <section class="nft-panel">
         <div id="nftGrid" class="nft-grid"></div>
+
+        <div class="load-more-wrap">
+          <button id="loadMoreBtn" class="load-more-btn">LOAD MORE</button>
+        </div>
       </section>
 
     </section>
 
   </div>
 
+  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+
   <div id="nftModal" class="modal">
     <div class="modal-card">
       <button id="modalClose" class="modal-close">×</button>
 
-      <img id="modalImage" class="modal-image" src="" alt="YonaMaxi NFT">
+      <img id="modalImage" class="modal-image" src="" alt="YONAMAXI NFT">
 
       <div class="modal-info">
-        <h2 id="modalName">YONAMAXI</h2>
+        <h2 id="modalName"></h2>
         <p id="modalDescription"></p>
         <div id="modalTraits" class="trait-list"></div>
       </div>
@@ -389,12 +761,29 @@
     const IMAGE_CID = "bafybeib6mscors2ckg5roz5bs3et3ebjnvwpvuf2eors2j6jsoeipicst4";
     const METADATA_CID = "bafybeifxmoqrza4cybkmalknqpouy5vu4x3nm3vzuhikskwzli2vo4ewpe";
 
-    const GATEWAY = "https://ipfs.io/ipfs/";
     const TOTAL_SUPPLY = 250;
+    const ITEMS_PER_LOAD = 100;
+
+    const FILTER_KEYS = [
+      "type",
+      "head",
+      "eyes",
+      "mouth",
+      "acc1",
+      "acc2"
+    ];
 
     const nftGrid = document.getElementById("nftGrid");
     const filtersEl = document.getElementById("filters");
     const resultCount = document.getElementById("resultCount");
+    const mobileCount = document.getElementById("mobileCount");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+    const filterPanel = document.getElementById("filterPanel");
+    const filterToggle = document.getElementById("filterToggle");
+    const drawerClose = document.getElementById("drawerClose");
+    const drawerBackdrop = document.getElementById("drawerBackdrop");
+    const clearFiltersBtn = document.getElementById("clearFiltersBtn");
 
     const nftModal = document.getElementById("nftModal");
     const modalClose = document.getElementById("modalClose");
@@ -404,15 +793,31 @@
     const modalTraits = document.getElementById("modalTraits");
 
     let allNFTs = [];
+    let currentItems = [];
+    let visibleCount = ITEMS_PER_LOAD;
     let selectedFilters = {};
-    let FILTER_KEYS = [];
 
-    function imageUrl(id) {
-      return `${GATEWAY}${IMAGE_CID}/${id}.png`;
+    function imageCandidates(id) {
+      const padded = String(id).padStart(4, "0");
+
+      return [
+        `https://${IMAGE_CID}.ipfs.inbrowser.link/${id}.png`,
+        `https://ipfs.io/ipfs/${IMAGE_CID}/${id}.png`,
+        `https://gateway.pinata.cloud/ipfs/${IMAGE_CID}/${id}.png`,
+        `https://${IMAGE_CID}.ipfs.inbrowser.link/${padded}.png`,
+        `https://ipfs.io/ipfs/${IMAGE_CID}/${padded}.png`,
+        `https://gateway.pinata.cloud/ipfs/${IMAGE_CID}/${padded}.png`,
+        `https://${IMAGE_CID}.ipfs.inbrowser.link/${id}.jpg`,
+        `https://ipfs.io/ipfs/${IMAGE_CID}/${id}.jpg`,
+        `https://gateway.pinata.cloud/ipfs/${IMAGE_CID}/${id}.jpg`,
+        `https://${IMAGE_CID}.ipfs.inbrowser.link/${padded}.jpg`,
+        `https://ipfs.io/ipfs/${IMAGE_CID}/${padded}.jpg`,
+        `https://gateway.pinata.cloud/ipfs/${IMAGE_CID}/${padded}.jpg`
+      ];
     }
 
     function metadataUrl(id) {
-      return `${GATEWAY}${METADATA_CID}/${id}.json`;
+      return `https://ipfs.io/ipfs/${METADATA_CID}/${id}.json`;
     }
 
     function getAttribute(metadata, key) {
@@ -432,18 +837,29 @@
 
         const metadata = await response.json();
 
-        return {
+        const nft = {
           id,
           name: metadata.name || `YONAMAXI #${id}`,
           description: metadata.description || "",
           attributes: metadata.attributes || []
         };
+
+        FILTER_KEYS.forEach((key) => {
+          nft[key] = getAttribute(metadata, key);
+        });
+
+        return nft;
       } catch (error) {
         return {
           id,
           name: `YONAMAXI #${id}`,
           description: "",
-          attributes: []
+          attributes: [],
+          Rarity: "",
+          Cycle: "",
+          Group: "",
+          Role: "",
+          Mask: ""
         };
       }
     }
@@ -459,39 +875,23 @@
 
         results.push(...batchResults);
         resultCount.textContent = `Loading metadata... ${results.length} / ${TOTAL_SUPPLY}`;
+        mobileCount.textContent = `Loading... ${results.length}`;
       }
 
       allNFTs = results;
-
-      buildDynamicFilterKeys();
-
-      allNFTs = allNFTs.map((nft) => {
-        FILTER_KEYS.forEach((key) => {
-          nft[key] = getAttribute(nft, key);
-        });
-
-        return nft;
-      });
+      currentItems = allNFTs;
 
       buildFilters();
-      renderNFTs(allNFTs);
+      renderNFTs();
+      updateClearButton();
     }
+function updateClearButton() {
+  const hasActiveFilter = FILTER_KEYS.some((key) => {
+    return selectedFilters[key] && selectedFilters[key].size > 0;
+  });
 
-    function buildDynamicFilterKeys() {
-      const keys = new Set();
-
-      allNFTs.forEach((nft) => {
-        if (!Array.isArray(nft.attributes)) return;
-
-        nft.attributes.forEach((attr) => {
-          if (attr.trait_type) {
-            keys.add(String(attr.trait_type));
-          }
-        });
-      });
-
-      FILTER_KEYS = [...keys];
-    }
+  clearFiltersBtn.disabled = !hasActiveFilter;
+}
 
     function buildFilters() {
       filtersEl.innerHTML = "";
@@ -506,7 +906,7 @@
         selectedFilters[key] = new Set();
 
         const details = document.createElement("details");
-        details.open = false;
+        details.open = key === "Rarity";
 
         const summary = document.createElement("summary");
         summary.textContent = key;
@@ -544,29 +944,54 @@
     }
 
     function applyFilters() {
-      const filtered = allNFTs.filter((nft) => {
-        return FILTER_KEYS.every((key) => {
-          if (selectedFilters[key].size === 0) return true;
-          return selectedFilters[key].has(nft[key]);
-        });
-      });
+  visibleCount = ITEMS_PER_LOAD;
 
-      renderNFTs(filtered);
-    }
+  currentItems = allNFTs.filter((nft) => {
+    return FILTER_KEYS.every((key) => {
+      if (selectedFilters[key].size === 0) return true;
+      return selectedFilters[key].has(nft[key]);
+    });
+  });
 
-    function renderNFTs(items) {
+  renderNFTs();
+  updateClearButton();
+}
+
+    function renderNFTs() {
       nftGrid.innerHTML = "";
 
-      resultCount.textContent = `${items.length} / ${TOTAL_SUPPLY} NFTs`;
+      const visibleItems = currentItems.slice(0, visibleCount);
 
-      items.forEach((nft) => {
+      resultCount.textContent = `${currentItems.length} / ${TOTAL_SUPPLY} NFTs`;
+      mobileCount.textContent = `${currentItems.length} NFTs`;
+
+      visibleItems.forEach((nft) => {
+        const urls = imageCandidates(nft.id);
         const card = document.createElement("article");
+
         card.className = "nft-card";
 
         card.innerHTML = `
-          <img src="${imageUrl(nft.id)}" alt="${nft.name}" loading="lazy">
+          <img
+            src="${urls[0]}"
+            alt="${nft.name}"
+            loading="lazy"
+            data-step="0"
+          >
           <p>${nft.name}</p>
         `;
+
+        const img = card.querySelector("img");
+
+        img.onerror = () => {
+          let step = Number(img.dataset.step);
+          step++;
+
+          if (step < urls.length) {
+            img.dataset.step = step;
+            img.src = urls[step];
+          }
+        };
 
         card.addEventListener("click", () => {
           openNFTModal(nft);
@@ -574,10 +999,30 @@
 
         nftGrid.appendChild(card);
       });
+
+      if (visibleCount >= currentItems.length) {
+        loadMoreBtn.style.display = "none";
+      } else {
+        loadMoreBtn.style.display = "inline-flex";
+      }
     }
 
     function openNFTModal(nft) {
-      modalImage.src = imageUrl(nft.id);
+      const urls = imageCandidates(nft.id);
+
+      modalImage.dataset.step = "0";
+      modalImage.src = urls[0];
+
+      modalImage.onerror = () => {
+        let step = Number(modalImage.dataset.step);
+        step++;
+
+        if (step < urls.length) {
+          modalImage.dataset.step = step;
+          modalImage.src = urls[step];
+        }
+      };
+
       modalName.textContent = nft.name || `YONAMAXI #${nft.id}`;
       modalDescription.textContent = nft.description || "";
 
@@ -596,11 +1041,30 @@
       });
 
       nftModal.classList.add("is-visible");
+      document.body.style.overflow = "hidden";
     }
 
     function closeNFTModal() {
       nftModal.classList.remove("is-visible");
+      document.body.style.overflow = "";
     }
+
+    function openFilterDrawer() {
+      filterPanel.classList.add("is-open");
+      drawerBackdrop.classList.add("is-visible");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeFilterDrawer() {
+      filterPanel.classList.remove("is-open");
+      drawerBackdrop.classList.remove("is-visible");
+      document.body.style.overflow = "";
+    }
+
+    loadMoreBtn.addEventListener("click", () => {
+      visibleCount += ITEMS_PER_LOAD;
+      renderNFTs();
+    });
 
     modalClose.addEventListener("click", closeNFTModal);
 
@@ -610,11 +1074,34 @@
       }
     });
 
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape") {
-        closeNFTModal();
-      }
+  filterToggle.addEventListener("click", openFilterDrawer);
+drawerClose.addEventListener("click", closeFilterDrawer);
+drawerBackdrop.addEventListener("click", closeFilterDrawer);
+
+clearFiltersBtn.addEventListener("click", () => {
+  FILTER_KEYS.forEach((key) => {
+    selectedFilters[key].clear();
+  });
+
+  document
+    .querySelectorAll('#filters input[type="checkbox"]')
+    .forEach((checkbox) => {
+      checkbox.checked = false;
     });
+
+  visibleCount = ITEMS_PER_LOAD;
+  currentItems = allNFTs;
+
+  renderNFTs();
+  updateClearButton();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeNFTModal();
+    closeFilterDrawer();
+  }
+});
 
     loadAllNFTs();
   </script>
