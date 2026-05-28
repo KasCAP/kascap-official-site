@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KasCAP</title>
+  <link rel="stylesheet" href="../../style.css">
+
+  <style>
+    .page-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 1080px;
+      margin: 0 auto 90px;
+    }
+
+    .top-bar {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 42px 0 30px;
+    }
+
+    .back-link,
+    .icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      border: 1px solid rgba(180,255,244,0.18);
+      background: linear-gradient(
+        180deg,
+        rgba(116,198,186,0.18) 0%,
+        rgba(116,198,186,0.42) 45%,
+        rgba(116,198,186,0.82) 100%
+      );
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.20);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .back-link:hover,
+    .icon-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(116,198,186,0.55);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.26), 0 0 18px rgba(116,198,186,0.18);
+    }
+
+    .back-link {
+      justify-self: start;
+      height: 42px;
+      padding: 0 20px;
+    }
+
+    .page-title {
+      justify-self: center;
+      font-family: "Gamer", sans-serif;
+      font-size: 96px;
+      color: white;
+      line-height: 0.9;
+    }
+
+    .top-links {
+      justify-self: end;
+      display: flex;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      width: 52px;
+      height: 42px;
+      padding: 0;
+    }
+
+    .icon-btn img {
+      width: 120%;
+      height: 120%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .about-card {
+      border-radius: 30px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.07),
+        rgba(255,255,255,0.025)
+      );
+      backdrop-filter: blur(10px);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.32);
+      overflow: hidden;
+    }
+
+    .about-image {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .about-text {
+      padding: 34px 38px 40px;
+      color: #d7d7e6;
+      font-size: 17px;
+      line-height: 1.95;
+    }
+
+    .about-text p + p {
+      margin-top: 22px;
+    }
+
+    .brand-word {
+      color: white;
+      font-weight: 800;
+    }
+
+    @media (max-width: 767px) {
+      body {
+        padding-top: 70px;
+      }
+
+      .page-wrap {
+        width: 100%;
+        margin: 0 auto 70px;
+      }
+
+      .top-bar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 90;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 66px;
+        padding: 10px 14px;
+        background: rgba(7,7,11,0.82);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .back-link {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 36px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
+
+      .back-link:hover {
+        transform: translateY(-50%);
+      }
+
+      .page-title {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 42px;
+      }
+
+      .top-links {
+        position: absolute;
+        right: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .icon-btn {
+        width: 42px;
+        height: 36px;
+      }
+
+      .about-card {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+      }
+
+      .about-text {
+        padding: 28px 24px 40px;
+        font-size: 15px;
+        line-height: 1.85;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page-wrap">
+
+    <header class="top-bar">
+      <a href="../../index.html" class="back-link">Back</a>
+
+      <h1 class="page-title">KASCAP</h1>
+
+      <div class="top-links">
+        <a href="https://x.com/Kaspa_CAP" target="_blank" class="icon-btn" aria-label="X">
+          <img src="../../assets/link/x.png" alt="X">
+        </a>
+      </div>
+    </header>
+
+    <section class="about-card">
+      <img src="../../assets/projects/kascap-hero.png" class="about-image" alt="KasCAP">
+
+      <div class="about-text">
+        <p>
+          A passionate holder of <span class="brand-word">Kaspa ($KAS)</span> and a proud member of the Japanese Kaspa community, <span class="brand-word">ShinKaspa</span>.
+          Actively involved in the development of NFT projects such as <span class="brand-word">KasPunks</span> and <span class="brand-word">KASHIN</span>, while also sharing clear and beginner-friendly explanations of the latest Kaspa technology updates and news in Japanese.
+        </p>
+
+        <p>
+          Driven by a strong belief in the potential of blockchain technology, the mission is to help grow and energize the Kaspa community alongside the evolution of the network itself.
+        </p>
+
+        <p>
+          To have discovered Kaspa at this moment in time feels nothing short of witnessing the eve of a revolution — and that conviction continues to inspire the journey every day.
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
