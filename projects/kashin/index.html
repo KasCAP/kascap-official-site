@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>KASHIN</title>
 
   <link rel="stylesheet" href="../../style.css">
@@ -143,6 +144,14 @@
       padding: 22px;
       max-height: calc(100vh - 40px);
       overflow: auto;
+    }
+
+    .drawer-head {
+      display: block;
+    }
+
+    .drawer-close {
+      display: none;
     }
 
     .filter-title {
@@ -343,7 +352,7 @@
 
     @media (max-width: 767px) {
       body {
-        padding-top: 74px;
+        padding-top: 70px;
       }
 
       .detail-wrap {
@@ -357,12 +366,12 @@
         top: 0;
         z-index: 40;
         display: grid;
-        grid-template-columns: 82px 1fr 82px;
+        grid-template-columns: 1fr auto 1fr;
         align-items: center;
         width: 100%;
-        height: 64px;
+        height: 66px;
         padding: 10px 14px;
-        background: rgba(7,7,11,0.78);
+        background: rgba(7,7,11,0.82);
         backdrop-filter: blur(14px);
         border-bottom: 1px solid rgba(255,255,255,0.08);
       }
@@ -377,7 +386,7 @@
       .mobile-title {
         justify-self: center;
         font-family: "Gamer", sans-serif;
-        font-size: 34px;
+        font-size: 42px;
         line-height: 0.9;
         color: white;
       }
@@ -388,10 +397,7 @@
         padding: 18px 0 18px;
       }
 
-      .detail-top .back-link {
-        display: none;
-      }
-
+      .detail-top .back-link,
       .detail-title {
         display: none;
       }
@@ -399,7 +405,7 @@
       .top-links {
         justify-content: center;
         display: flex;
-        margin-top: 10px;
+        margin-top: 8px;
       }
 
       .official-text {
@@ -412,7 +418,7 @@
 
       .mobile-filter-bar {
         position: sticky;
-        top: 64px;
+        top: 66px;
         z-index: 30;
         display: flex;
         justify-content: space-between;
@@ -422,8 +428,8 @@
         background:
           linear-gradient(
             180deg,
-            rgba(7,7,11,0.92),
-            rgba(7,7,11,0.64),
+            rgba(7,7,11,0.94),
+            rgba(7,7,11,0.72),
             rgba(7,7,11,0)
           );
         backdrop-filter: blur(8px);
@@ -452,12 +458,19 @@
         bottom: 0;
         top: auto;
         z-index: 60;
-        max-height: 72vh;
+        max-height: 74vh;
         overflow: auto;
         transform: translateY(110%);
         transition: transform 0.28s ease;
         border-radius: 26px 26px 0 0;
         padding: 22px;
+        background:
+          linear-gradient(
+            180deg,
+            rgba(18,32,32,0.99),
+            rgba(8,12,16,0.99)
+          );
+        backdrop-filter: none;
       }
 
       .filter-panel.is-open {
@@ -472,6 +485,7 @@
       }
 
       .drawer-close {
+        display: inline-flex;
         width: 42px;
         height: 38px;
         font-size: 18px;
@@ -482,8 +496,8 @@
         inset: 0;
         z-index: 55;
         display: none;
-        background: rgba(0,0,0,0.55);
-        backdrop-filter: blur(5px);
+        background: rgba(0,0,0,0.66);
+        backdrop-filter: blur(4px);
       }
 
       .drawer-backdrop.is-visible {
@@ -524,7 +538,7 @@
         border-radius: 0;
         padding: 74px 18px 34px;
         border: none;
-        background: rgba(10,10,14,0.96);
+        background: rgba(10,10,14,0.97);
       }
 
       .modal-close {
