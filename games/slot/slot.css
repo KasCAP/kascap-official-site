@@ -1,6 +1,7 @@
 @font-face {
   font-family: "Gamer";
-  src: url("assets/fonts/Gamer.ttf") format("truetype");
+  src: url("../../assets/fonts/Gamer.ttf") format("truetype");
+  font-display: swap;
 }
 
 * {
