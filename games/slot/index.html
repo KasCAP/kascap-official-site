@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SLOT GAME | KasCAP</title>
+  <link rel="stylesheet" href="slot.css" />
+  <link rel="icon" type="image/png" href="../../favicon.png" />
+</head>
+<body>
+  <div class="mobile-header">
+    <a href="../../index.html" class="back-link mobile-back">Back</a>
+    <div class="mobile-title">SLOT GAME</div>
+    <div></div>
+  </div>
+
+  <div class="detail-wrap">
+    <div class="detail-top">
+      <a href="../../index.html" class="back-link">Back</a>
+      <h1 class="detail-title">SLOT GAME</h1>
+      <div></div>
+    </div>
+
+    <section class="slot-machine" aria-label="KasCAP SLOT">
+      <div class="top-bar">
+        <button id="soundToggle" class="sound-toggle" type="button" aria-pressed="false" aria-label="Sound toggle">
+          <span class="toggle-label off-label">OFF</span>
+          <span class="toggle-label on-label">ON</span>
+        </button>
+        <button id="resetBtn" class="back-link mini-action" type="button">RESET DATA</button>
+      </div>
+
+      <div class="data-panel">
+        <div><span>CREDIT</span><strong id="credit">0050</strong></div>
+        <div><span>PAYOUT</span><strong id="payout">000</strong></div>
+        <div><span>TOTAL</span><strong id="totalGames">0000</strong></div>
+        <div><span>BIG</span><strong id="bigCount">00</strong></div>
+        <div><span>REG</span><strong id="regCount">00</strong></div>
+      </div>
+
+      <div class="lamp-row">
+        <img class="bonus-lamp" id="leftLamp" src="assets/slot/cap_off.png" alt="left bonus lamp" />
+        <div id="message" class="message"></div>
+        <img class="bonus-lamp" id="rightLamp" src="assets/slot/cap_off.png" alt="right bonus lamp" />
+      </div>
+
+      <div class="reel-frame">
+        <div class="reel-window" aria-label="slot reels">
+          <div class="payline payline-top"></div>
+          <div class="payline payline-middle"></div>
+          <div class="payline payline-bottom"></div>
+
+          <div class="reel" id="reel0"></div>
+          <div class="reel" id="reel1"></div>
+          <div class="reel" id="reel2"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="leverBtn" class="back-link game-btn lever" type="button">LEVER</button>
+        <div class="stop-row">
+          <button class="back-link game-btn stop-btn" data-reel="0" type="button" disabled>STOP</button>
+          <button class="back-link game-btn stop-btn" data-reel="1" type="button" disabled>STOP</button>
+          <button class="back-link game-btn stop-btn" data-reel="2" type="button" disabled>STOP</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="resetModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="resetTitle">
+    <div class="modal-card">
+      <h2 id="resetTitle">Are you sure?</h2>
+      <p>All slot data will be reset.</p>
+      <div class="modal-actions">
+        <button id="resetYes" class="back-link game-btn" type="button">YES</button>
+        <button id="resetNo" class="back-link game-btn" type="button">NO</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="slot.js"></script>
+</body>
+</html>
