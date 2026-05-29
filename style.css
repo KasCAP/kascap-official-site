@@ -772,11 +772,21 @@ main {
 
 .coming-soon-text{
 
-  font-family:"Gamer",sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    sans-serif;
 
-  font-size:64px;
+  font-size:18px;
 
-  color:white;
+  font-weight:500;
 
-  opacity:.8;
+  letter-spacing:.12em;
+
+  text-transform:uppercase;
+
+  color:#b8c8c6;
+
+  opacity:.85;
 }
