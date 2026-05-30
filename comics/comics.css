@@ -467,3 +467,25 @@
   max-width: 680px !important;
   margin: 0 auto !important;
 }
+/* =========================
+   MOBILE HEADER SAFE FIX
+========================= */
+
+@media (max-width: 767px) {
+  .comics-title {
+    left: 50% !important;
+    transform: translate(-50%, -50%) scaleX(0.82) !important;
+
+    max-width: calc(100vw - 180px) !important;
+
+    overflow: visible !important;
+    white-space: nowrap !important;
+
+    text-align: center !important;
+    transform-origin: center center !important;
+  }
+
+  .comics-header .back-link {
+    z-index: 2 !important;
+  }
+}
