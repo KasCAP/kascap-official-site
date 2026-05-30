@@ -5,6 +5,7 @@
 .comics-page {
   position: relative;
   z-index: 1;
+  display: block;
   min-height: 100vh;
   max-width: 1180px;
   margin: 0 auto 90px;
@@ -61,6 +62,7 @@
 ========================= */
 
 .comics-header {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -76,6 +78,7 @@
   position: static;
   transform: none;
 
+  grid-column: 1;
   justify-self: start;
 
   height: 42px;
@@ -93,6 +96,7 @@
   position: static;
   transform: none;
 
+  grid-column: 2;
   justify-self: center;
 
   margin: 0;
@@ -116,6 +120,7 @@
 ========================= */
 
 .chapter-list {
+  display: block;
   max-width: 680px;
   margin: 0 auto;
 }
@@ -290,14 +295,12 @@
   }
 
   .comics-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     position: fixed;
     left: 0;
     top: 0;
     z-index: 90;
+
+    display: block;
 
     width: 100%;
     max-width: none;
@@ -316,11 +319,14 @@
 
     transform: translateY(-50%);
 
+    width: 74px;
     height: 36px;
     min-width: 0;
-    padding: 0 14px;
+    padding: 0;
 
     font-size: 13px;
+
+    z-index: 10;
   }
 
   .comics-header .back-link:hover {
@@ -329,16 +335,31 @@
 
   .comics-title {
     position: absolute;
-    left: 50%;
+    left: 124px;
+    right: 16px;
     top: 50%;
 
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
 
-    font-size: 36px;
-    line-height: 0.9;
+    margin: 0;
+    padding: 0;
+
+    width: auto;
+    max-width: none;
+
+    text-align: center;
+
+    font-family: "Gamer", sans-serif;
+    font-size: 30px;
+    line-height: 1;
     letter-spacing: 0.04em;
 
+    color: white;
+
     white-space: nowrap;
+    overflow: hidden;
+
+    z-index: 1;
   }
 
   .chapter-list {
@@ -418,74 +439,5 @@
 
   .page-counter {
     font-size: 12px;
-  }
-}
-/* =========================
-   FORCE FIX - COMICS INDEX PC
-========================= */
-
-.comics-page {
-  display: block !important;
-}
-
-.comics-header {
-  position: relative !important;
-  display: grid !important;
-  grid-template-columns: 1fr auto 1fr !important;
-  align-items: center !important;
-
-  width: 100% !important;
-  max-width: 1180px !important;
-  margin: 0 auto !important;
-  padding: 42px 0 56px !important;
-}
-
-.comics-header .back-link {
-  position: static !important;
-  transform: none !important;
-
-  grid-column: 1 !important;
-  justify-self: start !important;
-
-  height: 42px !important;
-  padding: 0 20px !important;
-}
-
-.comics-title {
-  position: static !important;
-  transform: none !important;
-
-  grid-column: 2 !important;
-  justify-self: center !important;
-
-  margin: 0 !important;
-  white-space: nowrap !important;
-}
-
-.chapter-list {
-  display: block !important;
-  max-width: 680px !important;
-  margin: 0 auto !important;
-}
-/* =========================
-   MOBILE HEADER SAFE FIX
-========================= */
-
-@media (max-width: 767px) {
-  .comics-title {
-    left: 50% !important;
-    transform: translate(-50%, -50%) scaleX(0.82) !important;
-
-    max-width: calc(100vw - 180px) !important;
-
-    overflow: visible !important;
-    white-space: nowrap !important;
-
-    text-align: center !important;
-    transform-origin: center center !important;
-  }
-
-  .comics-header .back-link {
-    z-index: 2 !important;
   }
 }
