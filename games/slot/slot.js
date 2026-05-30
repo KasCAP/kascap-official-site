@@ -10,19 +10,21 @@
     probs: {
       big: 1 / 240,
       reg: 1 / 360,
-      grape: 1 / 10,
-      bell: 1 / 120,
-      cherry: 1 / 60,
-      replay: 1 / 8
+      small1: 1 / 10,
+      small2: 1 / 120,
+      small3: 1 / 60,
+      replay: 1 / 8,
+      special: 1 / 96
     },
 
     payout: {
       big: 360,
       reg: 120,
-      grape: 6,
-      bell: 15,
-      cherry: 2,
+      small1: 6,
+      small2: 15,
+      small3: 2,
       replay: 0,
+      special: 0,
       miss: 0
     },
 
@@ -31,12 +33,25 @@
       lampOn: "assets/slot/cap_on.png",
 
       symbols: {
-        cherry: "assets/slot/cherry.png",
-        grape: "assets/slot/grape.png",
-        bell: "assets/slot/bell.png",
-        replay: "assets/slot/replay.png",
-        big: "assets/slot/big.png",
-        reg: "assets/slot/reg.png",
+        big: "assets/slot/king.png",
+        reg: "assets/slot/viking.png",
+
+        replay: "assets/slot/chef.png",
+
+        bowler: "assets/slot/bowler.png",
+        gallon: "assets/slot/gallon.png",
+        propeller: "assets/slot/propeller.png",
+        rag: "assets/slot/rag.png",
+
+        helmet: "assets/slot/helmet.png",
+        bucket: "assets/slot/bucket.png",
+
+        beanie: "assets/slot/beanie.png",
+        lucha: "assets/slot/lucha.png",
+
+        cap: "assets/slot/cap.png",
+        knight: "assets/slot/knight.png",
+
         blank: "assets/slot/blank.png"
       },
 
@@ -46,7 +61,7 @@
         stop: "assets/slot/sounds/stop.mp3",
         coin: "assets/slot/sounds/coin.mp3",
         replay: "assets/slot/sounds/replay.mp3",
-        capLamp: "assets/slot/sounds/cap_lamp.mp3",
+        pin: "assets/slot/sounds/pin.mp3",
         bigBonus: "assets/slot/sounds/big_bonus.mp3",
         regBonus: "assets/slot/sounds/reg_bonus.mp3"
       }
@@ -54,6 +69,8 @@
   };
 
   const STORAGE_KEY = "kascap_slot_final";
+
+  const SPECIAL_LAMP_ORDER = [4, 3, 5, 2, 6, 1, 7, 0, 8];
 
   const els = {
     credit: document.getElementById("credit"),
@@ -71,6 +88,7 @@
       document.getElementById("reel1"),
       document.getElementById("reel2")
     ],
+    specialLamps: Array.from(document.querySelectorAll(".special-lamp")),
     soundToggle: document.getElementById("soundToggle"),
     resetBtn: document.getElementById("resetBtn"),
     resetModal: document.getElementById("resetModal"),
@@ -106,12 +124,15 @@
     });
 
     els.soundToggle.addEventListener("click", toggleSound);
+
     els.resetBtn.addEventListener("click", () => {
       els.resetModal.classList.remove("hidden");
     });
+
     els.resetNo.addEventListener("click", () => {
       els.resetModal.classList.add("hidden");
     });
+
     els.resetYes.addEventListener("click", resetAll);
   }
 
@@ -131,7 +152,8 @@
       gamesSinceBonus: 0,
       lastPlayDate: "",
       soundOn: false,
-      replayFree: false
+      replayFree: false,
+      specialLampCount: 0
     };
   }
 
@@ -250,17 +272,27 @@
     const r = Math.random();
     let acc = 0;
 
-    acc += CONFIG.probs.grape;
-    if (r < acc) return "grape";
+    acc += CONFIG.probs.small1;
+    if (r < acc) return "small1";
 
-    acc += CONFIG.probs.bell;
-    if (r < acc) return "bell";
+    acc += CONFIG.probs.small2;
+    if (r < acc) return "small2";
 
-    acc += CONFIG.probs.cherry;
-    if (r < acc) return "cherry";
+    acc += CONFIG.probs.small3;
+    if (r < acc) return "small3";
 
     acc += CONFIG.probs.replay;
     if (r < acc) return "replay";
+
+    acc += CONFIG.probs.special;
+    if (r < acc) {
+      if (state.specialLampCount >= 9) {
+        state.specialLampCount = 0;
+        return Math.random() < 0.7 ? "big" : "reg";
+      }
+
+      return "special";
+    }
 
     return "miss";
   }
@@ -269,15 +301,37 @@
     const center = {
       big: ["big", "big", "big"],
       reg: ["reg", "reg", "reg"],
-      grape: ["grape", "grape", "grape"],
-      bell: ["bell", "bell", "bell"],
-      cherry: ["cherry", "blank", "blank"],
+
+      small1: makeSameLine(randomFrom([
+        "bowler",
+        "gallon",
+        "propeller",
+        "rag"
+      ])),
+
+      small2: makeSameLine(randomFrom([
+        "helmet",
+        "bucket"
+      ])),
+
+      small3: makeSameLine(randomFrom([
+        "beanie",
+        "lucha"
+      ])),
+
       replay: ["replay", "replay", "replay"],
+
+      special: makeSameLine(randomFrom([
+        "cap",
+        "knight"
+      ])),
+
       miss: randomMissLine()
     }[result];
 
     return {
       result,
+      centerSymbol: center[1],
       finalGrid: [
         [randomSymbol(), center[0], randomSymbol()],
         [randomSymbol(), center[1], randomSymbol()],
@@ -286,8 +340,28 @@
     };
   }
 
+  function makeSameLine(symbol) {
+    return [symbol, symbol, symbol];
+  }
+
   function randomMissLine() {
-    const symbols = ["cherry", "grape", "bell", "replay", "big", "reg", "blank"];
+    const symbols = [
+      "bowler",
+      "gallon",
+      "propeller",
+      "rag",
+      "helmet",
+      "bucket",
+      "beanie",
+      "lucha",
+      "replay",
+      "big",
+      "reg",
+      "cap",
+      "knight",
+      "blank"
+    ];
+
     let line;
 
     do {
@@ -297,8 +371,8 @@
         randomFrom(symbols)
       ];
     } while (
-      (line[0] === line[1] && line[1] === line[2]) ||
-      line[0] === "cherry"
+      line[0] === line[1] &&
+      line[1] === line[2]
     );
 
     return line;
@@ -306,12 +380,19 @@
 
   function randomSymbol() {
     return randomFrom([
-      "cherry",
-      "grape",
-      "bell",
+      "bowler",
+      "gallon",
+      "propeller",
+      "rag",
+      "helmet",
+      "bucket",
+      "beanie",
+      "lucha",
       "replay",
       "big",
       "reg",
+      "cap",
+      "knight",
       "blank"
     ]);
   }
@@ -365,29 +446,44 @@
       state.credit = clampCredit(state.credit + pay);
     }
 
-    if (result === "big") {
-      state.bigCount += 1;
-      state.gamesSinceBonus = 0;
+   if (result === "big") {
+  state.bigCount += 1;
+  state.gamesSinceBonus = 0;
 
-      els.message.textContent = "BIG BONUS";
-      setBonusLamps(false);
-      playSound("bigBonus");
+  els.message.textContent = "King BONUS +360";
+  setBonusLamps(false);
+  playSound("bigBonus");
 
-    } else if (result === "reg") {
-      state.regCount += 1;
-      state.gamesSinceBonus = 0;
+} else if (result === "reg") {
+  state.regCount += 1;
+  state.gamesSinceBonus = 0;
 
-      els.message.textContent = "REG BONUS";
-      setBonusLamps(false);
-      playSound("regBonus");
+  els.message.textContent = "Viking BONUS +120";
+  setBonusLamps(false);
+  playSound("regBonus");
 
-    } else if (result === "replay") {
-      state.replayFree = true;
-      els.message.textContent = "REPLAY";
-      playSound("replay");
+} else if (result === "replay") {
+  state.replayFree = true;
+  els.message.textContent = "Chef +Replay";
+  playSound("replay");
+
+} else if (result === "special") {
+
+  if (state.specialLampCount >= 9) {
+    state.pendingBonus = Math.random() < 0.7 ? "big" : "reg";
+    state.specialLampCount = 9;
+  } else {
+    state.specialLampCount += 1;
+  }
+
+  state.payout = 0;
+  els.message.textContent =
+    `${symbolLabel(currentSpin.centerSymbol)} +Special`;
+
+  playSound("pin");
 
     } else if (pay > 0) {
-      els.message.textContent = `${result.toUpperCase()} +${pay}`;
+      els.message.textContent = `${symbolLabel(currentSpin.centerSymbol)} +${pay}`;
       playSound("coin");
 
     } else {
@@ -401,6 +497,31 @@
     saveState();
   }
 
+  function symbolLabel(symbol) {
+    const labels = {
+      bowler: "Bowler",
+      gallon: "Ten-GallonHat",
+      propeller: "PropellerBeanie",
+      rag: "Do-rag",
+
+      helmet: "Helmet",
+      bucket: "BucketHat",
+
+      beanie: "Beanie",
+      lucha: "LuchaMask",
+
+      cap: "KasCap",
+      knight: "Knight",
+
+      replay: "Replay",
+      big: "King",
+      reg: "Viking",
+      blank: ""
+    };
+
+    return labels[symbol] || symbol;
+  }
+
   function setBonusLamps(on) {
     [els.leftLamp, els.rightLamp].forEach((lamp) => {
       lamp.src = on ? CONFIG.assets.lampOn : CONFIG.assets.lampOff;
@@ -408,11 +529,26 @@
     });
   }
 
+  function renderSpecialLamps() {
+    if (!els.specialLamps.length) return;
+
+    els.specialLamps.forEach((lamp) => {
+      lamp.classList.remove("on");
+    });
+
+    for (let i = 0; i < state.specialLampCount; i += 1) {
+      const lampIndex = SPECIAL_LAMP_ORDER[i];
+      if (els.specialLamps[lampIndex]) {
+        els.specialLamps[lampIndex].classList.add("on");
+      }
+    }
+  }
+
   function drawIdleReels() {
     const lines = [
-      ["cherry", "grape", "bell"],
+      ["bowler", "helmet", "beanie"],
       ["replay", "big", "reg"],
-      ["grape", "bell", "cherry"]
+      ["gallon", "bucket", "lucha"]
     ];
 
     lines.forEach((line, i) => {
@@ -437,6 +573,7 @@
     els.regCount.textContent = pad(state.regCount, 2);
 
     renderSound();
+    renderSpecialLamps();
   }
 
   function renderSound() {

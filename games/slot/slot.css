@@ -246,7 +246,6 @@ body::after {
 
 /* =========================
    SOUND TOGGLE
-   凹みベース + 白系エンボスつまみ
 ========================= */
 
 .sound-toggle {
@@ -362,8 +361,6 @@ body::after {
     color 0.2s ease,
     text-shadow 0.2s ease;
 }
-
-
 
 .sound-toggle[aria-pressed="false"] .off-label,
 .sound-toggle[aria-pressed="true"] .on-label {
@@ -496,6 +493,54 @@ body::after {
 
   text-shadow:
     0 0 16px rgba(73,234,203,0.54);
+}
+
+/* =========================
+   SPECIAL LAMPS
+========================= */
+
+.special-lamp-row {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 5px;
+
+  width: 100%;
+
+  padding: 0 12px 12px;
+}
+
+.special-lamp {
+  display: block;
+
+  height: 8px;
+
+  border-radius: 999px;
+
+  border: 1px solid rgba(180,255,244,0.18);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,0.08),
+      rgba(0,0,0,0.34)
+    );
+
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.45),
+    0 0 0 rgba(116,198,186,0);
+}
+
+.special-lamp.on {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(180,255,244,0.95),
+      rgba(116,198,186,0.88)
+    );
+
+  box-shadow:
+    0 0 10px rgba(116,198,186,0.78),
+    0 0 18px rgba(116,198,186,0.32);
 }
 
 .reel-frame {
@@ -825,6 +870,15 @@ body::after {
     height: 58px;
   }
 
+  .special-lamp-row {
+    gap: 4px;
+    padding: 0 10px 10px;
+  }
+
+  .special-lamp {
+    height: 7px;
+  }
+
   .reel {
     height: 195px;
   }
@@ -834,5 +888,3 @@ body::after {
     height: 46px;
   }
 }
-
-
