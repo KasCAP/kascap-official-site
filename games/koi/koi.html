@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>KASHIN KOIKOI | KasCAP</title>
+
+  <link rel="stylesheet" href="koi.css" />
+  <link rel="icon" type="image/png" href="../../favicon.png" />
+</head>
+
+<body>
+  <div class="mobile-header">
+    <a href="../../index.html" class="back-link mobile-back">Back</a>
+    <div class="mobile-title">KASHIN KOIKOI</div>
+    <div></div>
+  </div>
+
+  <div class="detail-wrap">
+    <div class="detail-top">
+      <a href="../../index.html" class="back-link">Back</a>
+      <h1 class="detail-title">KASHIN KOIKOI</h1>
+      <div></div>
+    </div>
+
+    <section class="koi-machine" aria-label="KASHIN KOIKOI">
+      <div class="top-bar">
+        <button
+          id="soundToggle"
+          class="sound-toggle"
+          type="button"
+          aria-pressed="false"
+          aria-label="Sound toggle"
+        >
+          <span class="toggle-label off-label">OFF</span>
+          <span class="toggle-label on-label">ON</span>
+        </button>
+
+        <button id="resetBtn" class="back-link mini-action" type="button">
+          RESET DATA
+        </button>
+      </div>
+
+      <div class="data-panel">
+        <div>
+          <span>CREDIT</span>
+          <strong id="credit">0050</strong>
+        </div>
+
+        <div>
+          <span>PAYOUT</span>
+          <strong id="payout">000</strong>
+        </div>
+
+        <div>
+          <span>TOTAL</span>
+          <strong id="totalGames">0000</strong>
+        </div>
+
+        <button id="roleBtn" class="back-link role-btn" type="button">
+          ROLE
+        </button>
+      </div>
+
+      <div id="message" class="message"></div>
+
+      <div class="card-frame">
+        <div class="card-window">
+          <div class="card">
+            <img id="card0" src="assets/back.png" alt="card 1" />
+          </div>
+
+          <div class="card">
+            <img id="card1" src="assets/back.png" alt="card 2" />
+          </div>
+
+          <div class="card">
+            <img id="card2" src="assets/back.png" alt="card 3" />
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="drawBtn" class="back-link game-btn draw" type="button">
+          DRAW
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <div
+    id="resetModal"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="resetTitle"
+  >
+    <div class="modal-card">
+      <h2 id="resetTitle">Are you sure?</h2>
+      <p>All KASHIN KOIKOI data will be reset.</p>
+
+      <div class="modal-actions">
+        <button id="resetYes" class="back-link game-btn" type="button">
+          YES
+        </button>
+
+        <button id="resetNo" class="back-link game-btn" type="button">
+          NO
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    id="roleModal"
+    class="modal hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="roleTitle"
+  >
+    <div class="modal-card role-modal-card">
+      <button id="roleClose" class="modal-close" type="button">×</button>
+
+      <h2 id="roleTitle">ROLE LIST</h2>
+
+      <ul class="role-list">
+  <li>
+    <span>MONTH PAIR</span>
+    <strong>2</strong>
+  </li>
+
+  <li>
+    <span>THREE OF A MONTH</span>
+    <strong>8</strong>
+  </li>
+
+  <li>
+    <span>RED RIBBONS</span>
+    <strong>15</strong>
+  </li>
+
+  <li>
+    <span>BLUE RIBBONS</span>
+    <strong>15</strong>
+  </li>
+
+  <li>
+    <span>SAKE WITH BLOSSOMS</span>
+    <strong>60</strong>
+  </li>
+
+  <li>
+    <span>SAKE WITH MOON</span>
+    <strong>60</strong>
+  </li>
+
+  <li>
+    <span>BOAR-DEER-BUTTERFLY</span>
+    <strong>120</strong>
+  </li>
+
+  <li>
+    <span>THREE BRIGHTS</span>
+    <strong>240</strong>
+  </li>
+
+      </ul>
+    </div>
+  </div>
+
+  <script src="koi.js"></script>
+</body>
+</html>
