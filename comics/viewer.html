@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>KASHIN MANGA Viewer</title>
+
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./comics.css">
+</head>
+
+<body>
+
+  <main class="viewer-page">
+
+    <div class="viewer-header">
+
+      <a href="./index.html" class="back-link">
+        Back
+      </a>
+
+    </div>
+
+    <div class="viewer-container">
+
+      <img
+        id="comicImage"
+        class="comic-image"
+        src=""
+        alt="KASHIN Manga Page">
+
+    </div>
+
+    <div class="viewer-controls">
+
+      <button id="nextBtn" class="viewer-btn">
+        NEXT
+      </button>
+
+      <div class="page-counter">
+        <span id="currentPage">1</span>
+        /
+        <span id="totalPages">16</span>
+      </div>
+
+      <button id="prevBtn" class="viewer-btn">
+        PREV
+      </button>
+
+    </div>
+
+  </main>
+
+  <script src="./comics.js"></script>
+
+</body>
+
+</html>

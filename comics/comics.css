@@ -1,0 +1,356 @@
+/* =========================
+   KASHIN COMICS
+========================= */
+
+.comics-page {
+  position: relative;
+  z-index: 1;
+
+  display: block !important;
+
+  min-height: 100vh;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 56px 24px;
+}
+
+/* HEADER */
+
+.comics-header {
+  position: relative;
+
+  display: block !important;
+
+  height: 82px;
+  margin-bottom: 48px;
+}
+
+.back-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 86px;
+  padding: 12px 22px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(140,255,240,0.5);
+
+  background: linear-gradient(
+    180deg,
+    rgba(116,198,186,0.9),
+    rgba(42,104,97,0.9)
+  );
+
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+
+  box-shadow: 0 0 18px rgba(116,198,186,0.22);
+
+  cursor: pointer;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.back-link:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.comics-title {
+  position: absolute;
+  top: 0;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  margin: 0;
+  padding: 0;
+
+  width: max-content;
+  max-width: none;
+
+  white-space: nowrap;
+
+  text-align: center;
+
+  font-family: "Gamer", sans-serif;
+  font-size: clamp(42px, 6vw, 72px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+/* CHAPTER LIST */
+
+.chapter-list {
+  display: block !important;
+
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.chapter-row {
+  display: grid;
+  grid-template-columns: 1fr 230px;
+  align-items: center;
+  gap: 24px;
+
+  padding: 26px 0;
+
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.chapter-left h2 {
+  margin: 0;
+
+  font-family: inherit;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.1;
+
+  white-space: nowrap;
+}
+
+.coming-soon {
+  margin-top: 6px;
+
+  color: rgba(255,255,255,0.55);
+
+  font-size: 13px;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+
+  white-space: nowrap;
+}
+
+.chapter-buttons {
+  display: grid;
+  grid-template-columns: 64px 64px 24px;
+  align-items: center;
+  justify-content: end;
+  gap: 10px;
+}
+
+.comic-btn,
+.viewer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 64px;
+  padding: 10px 18px;
+
+  border-radius: 10px;
+  border: 1px solid rgba(140,255,240,0.5);
+
+  background: linear-gradient(
+    180deg,
+    rgba(116,198,186,0.9),
+    rgba(42,104,97,0.9)
+  );
+
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none;
+
+  box-shadow: 0 0 18px rgba(116,198,186,0.22);
+
+  cursor: pointer;
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.comic-btn:hover,
+.viewer-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.comic-btn.disabled,
+.viewer-btn:disabled {
+  background: rgba(120,120,120,0.35);
+  border: 1px solid rgba(255,255,255,0.12);
+
+  color: rgba(255,255,255,0.35);
+
+  box-shadow: none;
+  cursor: default;
+  pointer-events: none;
+}
+
+.lock-icon {
+  width: 24px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* =========================
+   COMIC VIEWER
+========================= */
+
+.viewer-page {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100vh;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 32px 24px 28px;
+}
+
+.viewer-header {
+  position: relative;
+  height: 48px;
+  margin-bottom: 24px;
+}
+
+.viewer-header .back-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.viewer-container {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex: 1;
+  min-height: 0;
+}
+
+.comic-image {
+  display: block;
+
+  max-width: 100%;
+  max-height: calc(100vh - 260px);
+
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+  box-shadow: 0 18px 52px rgba(0,0,0,0.5);
+}
+
+.viewer-controls {
+  width: 100%;
+  max-width: 520px;
+  margin: 24px auto 0;
+
+  display: grid;
+  grid-template-columns: 1fr 96px 1fr;
+  align-items: center;
+  gap: 14px;
+}
+
+.viewer-btn {
+  min-width: 0;
+  width: 100%;
+  padding: 12px 18px;
+  font-size: 13px;
+}
+
+.page-counter {
+  text-align: center;
+  color: rgba(255,255,255,0.78);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* MOBILE */
+
+@media (max-width: 640px) {
+  .comics-page {
+    padding: 32px 18px;
+  }
+
+  .comics-header {
+    height: auto;
+    margin-bottom: 40px;
+    padding-top: 0;
+  }
+
+  .back-link {
+    position: static;
+    margin-bottom: 32px;
+  }
+
+  .comics-title {
+    position: static;
+    transform: none;
+
+    width: 100%;
+
+    font-size: 42px;
+    text-align: center;
+  }
+
+  .chapter-list {
+    max-width: 100%;
+  }
+
+  .chapter-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .chapter-buttons {
+    width: 100%;
+    grid-template-columns: 1fr 1fr 24px;
+  }
+
+  .comic-btn {
+    width: 100%;
+  }
+
+  .chapter-left h2 {
+    font-size: 20px;
+  }
+
+  .coming-soon {
+    font-size: 11px;
+  }
+
+  .viewer-page {
+    padding: 18px 14px 20px;
+  }
+
+  .viewer-header {
+    height: auto;
+    margin-bottom: 18px;
+  }
+
+  .viewer-header .back-link {
+    position: static;
+    margin-bottom: 0;
+  }
+
+.comic-image {
+  max-height: calc(100vh - 250px);
+  border-radius: 8px;
+}
+
+  .viewer-controls {
+    max-width: 100%;
+    grid-template-columns: 1fr 72px 1fr;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .viewer-btn {
+    padding: 11px 12px;
+  }
+
+  .page-counter {
+    font-size: 12px;
+  }
+}
