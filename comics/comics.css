@@ -5,91 +5,117 @@
 .comics-page {
   position: relative;
   z-index: 1;
-
-  display: block !important;
-
   min-height: 100vh;
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 56px 24px;
+  max-width: 1180px;
+  margin: 0 auto 90px;
+  padding: 0 24px;
 }
 
-/* HEADER */
+/* BUTTONS - OFFICIAL KasCAP STYLE */
 
-.comics-header {
-  position: relative;
-
-  display: block !important;
-
-  height: 82px;
-  margin-bottom: 48px;
-}
-
-.back-link {
-  position: absolute;
-  top: 0;
-  left: 0;
-
+.back-link,
+.comic-btn,
+.viewer-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  min-width: 86px;
-  padding: 12px 22px;
+  border-radius: 12px;
+  border: 1px solid rgba(180,255,244,0.18);
 
-  border-radius: 10px;
-  border: 1px solid rgba(140,255,240,0.5);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(116,198,186,0.18) 0%,
+      rgba(116,198,186,0.42) 45%,
+      rgba(116,198,186,0.82) 100%
+    );
 
-  background: linear-gradient(
-    180deg,
-    rgba(116,198,186,0.9),
-    rgba(42,104,97,0.9)
-  );
-
-  color: #fff;
-  font-weight: 700;
-  font-size: 14px;
+  color: white;
   text-decoration: none;
+  font-weight: 800;
 
-  box-shadow: 0 0 18px rgba(116,198,186,0.22);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.20);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 
   cursor: pointer;
-  transition: transform 0.18s ease, filter 0.18s ease;
 }
 
-.back-link:hover {
+.back-link:hover,
+.comic-btn:hover,
+.viewer-btn:hover {
   transform: translateY(-2px);
-  filter: brightness(1.08);
+  border-color: rgba(116,198,186,0.55);
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.26),
+    0 0 18px rgba(116,198,186,0.18);
+}
+
+/* =========================
+   INDEX HEADER - PC
+========================= */
+
+.comics-header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+
+  padding: 42px 0 56px;
+}
+
+.comics-header .back-link {
+  position: static;
+  transform: none;
+
+  justify-self: start;
+
+  height: 42px;
+  min-width: 0;
+  padding: 0 20px;
+
+  font-size: 14px;
+}
+
+.comics-header .back-link:hover {
+  transform: translateY(-2px);
 }
 
 .comics-title {
-  position: absolute;
-  top: 0;
-  left: 50%;
+  position: static;
+  transform: none;
 
-  transform: translateX(-50%);
+  justify-self: center;
 
   margin: 0;
   padding: 0;
 
-  width: max-content;
+  width: auto;
   max-width: none;
 
-  white-space: nowrap;
-
-  text-align: center;
-
   font-family: "Gamer", sans-serif;
-  font-size: clamp(42px, 6vw, 72px);
-  line-height: 1;
+  font-size: 72px;
+  line-height: 0.9;
   letter-spacing: 0.04em;
+
+  color: white;
+
+  white-space: nowrap;
 }
 
-/* CHAPTER LIST */
+/* =========================
+   CHAPTER LIST
+========================= */
 
 .chapter-list {
-  display: block !important;
-
   max-width: 680px;
   margin: 0 auto;
 }
@@ -110,7 +136,7 @@
 
   font-family: inherit;
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 800;
   line-height: 1.1;
 
   white-space: nowrap;
@@ -136,44 +162,16 @@
   gap: 10px;
 }
 
-.comic-btn,
-.viewer-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
+.comic-btn {
+  height: 42px;
   min-width: 64px;
-  padding: 10px 18px;
-
-  border-radius: 10px;
-  border: 1px solid rgba(140,255,240,0.5);
-
-  background: linear-gradient(
-    180deg,
-    rgba(116,198,186,0.9),
-    rgba(42,104,97,0.9)
-  );
-
-  color: #fff;
-  font-weight: 700;
+  padding: 0 18px;
   font-size: 13px;
-  text-decoration: none;
-
-  box-shadow: 0 0 18px rgba(116,198,186,0.22);
-
-  cursor: pointer;
-  transition: transform 0.18s ease, filter 0.18s ease;
-}
-
-.comic-btn:hover,
-.viewer-btn:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.08);
 }
 
 .comic-btn.disabled,
 .viewer-btn:disabled {
-  background: rgba(120,120,120,0.35);
+  background: rgba(120,120,120,0.28);
   border: 1px solid rgba(255,255,255,0.12);
 
   color: rgba(255,255,255,0.35);
@@ -183,10 +181,17 @@
   pointer-events: none;
 }
 
+.comic-btn.disabled:hover,
+.viewer-btn:disabled:hover {
+  transform: none;
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: none;
+}
+
 .lock-icon {
   width: 24px;
   text-align: center;
-  opacity: 0.7;
+  opacity: 0.72;
 }
 
 /* =========================
@@ -201,21 +206,29 @@
   flex-direction: column;
 
   min-height: 100vh;
-  max-width: 980px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 32px 24px 28px;
+  padding: 24px;
 }
 
 .viewer-header {
-  position: relative;
-  height: 48px;
-  margin-bottom: 24px;
+  height: 42px;
+  margin-bottom: 22px;
 }
 
 .viewer-header .back-link {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: static;
+  transform: none;
+
+  height: 42px;
+  min-width: 0;
+  padding: 0 20px;
+
+  font-size: 14px;
+}
+
+.viewer-header .back-link:hover {
+  transform: translateY(-2px);
 }
 
 .viewer-container {
@@ -233,7 +246,7 @@
   display: block;
 
   max-width: 100%;
-  max-height: calc(100vh - 260px);
+  max-height: calc(100vh - 250px);
 
   border-radius: 12px;
   background: rgba(255,255,255,0.04);
@@ -243,7 +256,7 @@
 .viewer-controls {
   width: 100%;
   max-width: 520px;
-  margin: 24px auto 0;
+  margin: 22px auto 0;
 
   display: grid;
   grid-template-columns: 1fr 96px 1fr;
@@ -252,9 +265,9 @@
 }
 
 .viewer-btn {
-  min-width: 0;
+  height: 42px;
   width: 100%;
-  padding: 12px 18px;
+  padding: 0 18px;
   font-size: 13px;
 }
 
@@ -266,78 +279,129 @@
   white-space: nowrap;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .comics-page {
-    padding: 32px 18px;
+    padding: 0 14px;
+    margin: 0 auto 70px;
   }
 
   .comics-header {
-    height: auto;
-    margin-bottom: 40px;
-    padding-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 90;
+
+    width: 100%;
+    max-width: none;
+    height: 66px;
+    padding: 10px 14px;
+
+    background: rgba(7,7,11,0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
   }
 
-  .back-link {
-    position: static;
-    margin-bottom: 32px;
+  .comics-header .back-link {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    height: 36px;
+    min-width: 0;
+    padding: 0 14px;
+
+    font-size: 13px;
+  }
+
+  .comics-header .back-link:hover {
+    transform: translateY(-50%);
   }
 
   .comics-title {
-    position: static;
-    transform: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
 
-    width: 100%;
+    transform: translate(-50%, -50%);
 
-    font-size: 42px;
-    text-align: center;
+    font-size: 36px;
+    line-height: 0.9;
+    letter-spacing: 0.04em;
+
+    white-space: nowrap;
   }
 
   .chapter-list {
     max-width: 100%;
+    padding-top: 112px;
   }
 
   .chapter-row {
+    display: grid;
     grid-template-columns: 1fr;
-    gap: 14px;
+    gap: 16px;
+
+    padding: 30px 0;
+  }
+
+  .chapter-left h2 {
+    font-size: 28px;
+  }
+
+  .coming-soon {
+    margin-top: 8px;
+    font-size: 13px;
   }
 
   .chapter-buttons {
     width: 100%;
-    grid-template-columns: 1fr 1fr 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 34px;
+    gap: 12px;
   }
 
   .comic-btn {
     width: 100%;
+    height: 54px;
+    font-size: 15px;
   }
 
-  .chapter-left h2 {
-    font-size: 20px;
-  }
-
-  .coming-soon {
-    font-size: 11px;
+  .lock-icon {
+    width: 34px;
+    font-size: 22px;
   }
 
   .viewer-page {
-    padding: 18px 14px 20px;
+    min-height: 100vh;
+    padding: 14px;
   }
 
   .viewer-header {
-    height: auto;
+    height: 36px;
     margin-bottom: 18px;
   }
 
   .viewer-header .back-link {
-    position: static;
-    margin-bottom: 0;
+    height: 36px;
+    min-width: 0;
+    padding: 0 14px;
+    font-size: 13px;
   }
 
-.comic-image {
-  max-height: calc(100vh - 250px);
-  border-radius: 8px;
-}
+  .comic-image {
+    max-height: calc(100vh - 220px);
+    border-radius: 8px;
+  }
 
   .viewer-controls {
     max-width: 100%;
@@ -347,10 +411,59 @@
   }
 
   .viewer-btn {
-    padding: 11px 12px;
+    height: 44px;
+    padding: 0 12px;
+    font-size: 13px;
   }
 
   .page-counter {
     font-size: 12px;
   }
+}
+/* =========================
+   FORCE FIX - COMICS INDEX PC
+========================= */
+
+.comics-page {
+  display: block !important;
+}
+
+.comics-header {
+  position: relative !important;
+  display: grid !important;
+  grid-template-columns: 1fr auto 1fr !important;
+  align-items: center !important;
+
+  width: 100% !important;
+  max-width: 1180px !important;
+  margin: 0 auto !important;
+  padding: 42px 0 56px !important;
+}
+
+.comics-header .back-link {
+  position: static !important;
+  transform: none !important;
+
+  grid-column: 1 !important;
+  justify-self: start !important;
+
+  height: 42px !important;
+  padding: 0 20px !important;
+}
+
+.comics-title {
+  position: static !important;
+  transform: none !important;
+
+  grid-column: 2 !important;
+  justify-self: center !important;
+
+  margin: 0 !important;
+  white-space: nowrap !important;
+}
+
+.chapter-list {
+  display: block !important;
+  max-width: 680px !important;
+  margin: 0 auto !important;
 }
