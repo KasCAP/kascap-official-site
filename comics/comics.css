@@ -441,3 +441,54 @@
     font-size: 12px;
   }
 }
+/* =========================
+   MOBILE HEADER FINAL OVERRIDE
+========================= */
+
+@media (max-width: 767px) {
+  .comics-header {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 66px !important;
+  }
+
+  .comics-header .back-link {
+    position: absolute !important;
+    left: 14px !important;
+    top: 50% !important;
+
+    width: 74px !important;
+    height: 36px !important;
+    padding: 0 !important;
+
+    transform: translateY(-50%) !important;
+    z-index: 10 !important;
+  }
+
+  .comics-title {
+    position: absolute !important;
+
+    left: 124px !important; /* Back 74px + left14px + margin36px */
+    right: 16px !important;
+    top: 50% !important;
+
+    width: auto !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+
+    font-size: 30px !important;
+    line-height: 1 !important;
+
+    transform: translateY(-50%) scaleX(0.78) !important;
+    transform-origin: center center !important;
+
+    z-index: 1 !important;
+  }
+}
