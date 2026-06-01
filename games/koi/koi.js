@@ -7,10 +7,10 @@
     creditMax: 9999,
 
     probs: {
-      monthPair: 1 / 8,
-      sameMonth: 1 / 16,
-      ribbon: 1 / 36,
-      sake: 1 / 132,
+      monthPair: 1 / 6,
+      sameMonth: 1 / 12,
+      ribbon: 1 / 56,
+      sake: 1 / 200,
       reg: 1 / 260,
       big: 1 / 300
     },
@@ -58,59 +58,114 @@
     monthPair: {
       label: "MONTH PAIR +2",
       payout: 2,
-      cards: ["01_k1", "01_k2", "02_k1"]
+      patterns: [
+        ["01_k1", "01_k2", "02_k1"],
+        ["02_k1", "02_k2", "04_k1"],
+        ["03_k1", "03_k2", "05_k1"],
+        ["04_k1", "04_k2", "06_k1"],
+        ["05_k1", "05_k2", "07_k1"],
+        ["06_k1", "06_k2", "08_k1"],
+        ["07_k1", "07_k2", "09_k1"],
+        ["08_k1", "08_k2", "10_k1"],
+        ["09_k1", "09_k2", "11_k1"],
+        ["10_k1", "10_k2", "12_k1"],
+        ["12_k1", "12_k2", "01_k1"],
+        ["12_k2", "12_k3", "02_k1"]
+      ]
     },
 
     sameMonth: {
       label: "THREE OF A MONTH +8",
       payout: 8,
-      cards: ["03_h", "03_r", "03_k1"]
+      patterns: [
+        ["01_h", "01_r", "01_k1"],
+        ["02_t", "02_r", "02_k1"],
+        ["03_h", "03_r", "03_k1"],
+        ["04_t", "04_r", "04_k1"],
+        ["05_t", "05_r", "05_k1"],
+        ["06_t", "06_b", "06_k1"],
+        ["07_t", "07_r", "07_k1"],
+        ["08_h", "08_t", "08_k1"],
+        ["09_t", "09_b", "09_k1"],
+        ["10_t", "10_b", "10_k1"],
+        ["11_h", "11_t", "11_r"],
+        ["12_h", "12_k1", "12_k2"]
+      ]
     },
 
     redRibbon: {
       label: "RED RIBBONS +15",
       payout: 15,
-      cards: ["01_r", "02_r", "03_r"]
+      patterns: [
+        ["01_r", "02_r", "03_r"],
+        ["02_r", "03_r", "01_r"],
+        ["03_r", "01_r", "02_r"]
+      ]
     },
 
     blueRibbon: {
       label: "BLUE RIBBONS +15",
       payout: 15,
-      cards: ["06_b", "09_b", "10_b"]
+      patterns: [
+        ["06_b", "09_b", "10_b"],
+        ["09_b", "10_b", "06_b"],
+        ["10_b", "06_b", "09_b"]
+      ]
     },
 
     blossomSake: {
       label: "SAKE WITH BLOSSOMS +60",
       payout: 60,
-      cards: ["03_h", "09_t", "03_k1"],
-      special: "sanko"
+      special: "sanko",
+      patterns: [
+        ["03_h", "09_t", "03_k1"],
+        ["09_t", "03_h", "03_k2"],
+        ["03_h", "03_r", "09_t"],
+        ["09_t", "03_h", "11_k1"]
+      ]
     },
 
     moonSake: {
       label: "SAKE WITH MOON +60",
       payout: 60,
-      cards: ["08_h", "09_t", "08_k1"],
-      special: "sanko"
+      special: "sanko",
+      patterns: [
+        ["08_h", "09_t", "08_k1"],
+        ["09_t", "08_h", "08_k2"],
+        ["08_h", "08_t", "09_t"],
+        ["09_t", "08_h", "12_k1"]
+      ]
     },
 
     boarDeerButterfly: {
       label: "BOAR DEER BUTTERFLY +120",
       payout: 120,
-      cards: ["07_t", "10_t", "06_t"],
-      special: "shiko"
+      special: "shiko",
+      patterns: [
+        ["07_t", "10_t", "06_t"],
+        ["10_t", "06_t", "07_t"],
+        ["06_t", "07_t", "10_t"]
+      ]
     },
 
     threeBrights: {
       label: "THREE BRIGHTS +240",
       payout: 240,
-      cards: ["01_h", "03_h", "08_h"],
-      special: "goko"
+      special: "goko",
+      patterns: [
+        ["01_h", "03_h", "08_h"],
+        ["03_h", "08_h", "11_h"],
+        ["08_h", "11_h", "12_h"],
+        ["01_h", "11_h", "12_h"],
+        ["03_h", "08_h", "12_h"],
+        ["01_h", "03_h", "12_h"]
+      ]
     },
 
     miss: {
       label: "",
       payout: 0,
-      cards: []
+      patterns: []
     }
   };
 
@@ -269,7 +324,7 @@
 
     const key = lottery();
     const result = resultMap[key];
-    const cards = key === "miss" ? randomMissCards() : result.cards;
+    const cards = key === "miss" ? randomMissCards() : randomPattern(result);
 
     showBackCards();
 
@@ -344,6 +399,10 @@
     return "miss";
   }
 
+  function randomPattern(result) {
+    return shuffle([...randomFrom(result.patterns)]);
+  }
+
   function showBackCards() {
     els.cards.forEach((img) => {
       img.src = "assets/back.png";
@@ -384,8 +443,7 @@
 
   function randomMissCards() {
     for (let i = 0; i < 1000; i++) {
-      const shuffled = [...deck].sort(() => Math.random() - 0.5);
-      const selected = shuffled.slice(0, 3);
+      const selected = shuffle([...deck]).slice(0, 3);
 
       if (checkYaku(selected) === "miss") {
         return selected;
@@ -479,5 +537,13 @@
 
   function pad(num, len) {
     return String(num).padStart(len, "0");
+  }
+
+  function randomFrom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function shuffle(arr) {
+    return arr.sort(() => Math.random() - 0.5);
   }
 })();
