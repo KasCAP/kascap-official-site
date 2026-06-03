@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ZCAPS</title>
+
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" type="image/png" href="/favicon.png">
+
+  <style>
+    .detail-wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 1180px;
+      margin: 0 auto 90px;
+    }
+
+    .mobile-header { display: none; }
+
+    .detail-top {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 42px 0 26px;
+    }
+
+    .back-link,
+    .icon-btn,
+    .load-more-btn,
+    .filter-toggle,
+    .drawer-close,
+    .modal-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      border: 1px solid rgba(180,255,244,0.18);
+      background: linear-gradient(180deg, rgba(116,198,186,0.18) 0%, rgba(116,198,186,0.42) 45%, rgba(116,198,186,0.82) 100%);
+      color: white;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.20);
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      cursor: pointer;
+    }
+
+    .back-link:hover,
+    .icon-btn:hover,
+    .load-more-btn:hover,
+    .filter-toggle:hover,
+    .drawer-close:hover,
+    .modal-close:hover {
+      transform: translateY(-2px);
+      border-color: rgba(116,198,186,0.55);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.26), 0 0 18px rgba(116,198,186,0.18);
+    }
+
+    .back-link {
+      justify-self: start;
+      height: 42px;
+      padding: 0 20px;
+    }
+
+    .detail-title {
+      justify-self: center;
+      font-family: "Gamer", sans-serif;
+      font-size: 96px;
+      color: white;
+      line-height: 0.9;
+    }
+
+    .top-links {
+      justify-self: end;
+      display: flex;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      width: 52px;
+      height: 42px;
+      padding: 0;
+    }
+
+    .icon-btn img {
+      width: 120%;
+      height: 120%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .official-text {
+      max-width: 980px;
+      margin: 0 auto 34px;
+      color: #d7d7e6;
+      font-size: 16px;
+      line-height: 1.9;
+      text-align: center;
+    }
+
+    .mobile-filter-bar { display: none; }
+
+    .collection-layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .filter-panel,
+    .nft-panel {
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+    }
+
+    .filter-panel {
+      position: sticky;
+      top: 20px;
+      padding: 22px;
+      max-height: calc(100vh - 40px);
+      overflow: auto;
+    }
+
+    .drawer-head { display: block; }
+    .drawer-close { display: none; }
+
+    .filter-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .filter-title {
+      font-family: "Gamer", sans-serif;
+      font-size: 48px;
+      margin-bottom: 0;
+    }
+
+    .clear-filters-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(180,255,244,0.18);
+      background: linear-gradient(180deg, rgba(116,198,186,0.18) 0%, rgba(116,198,186,0.42) 45%, rgba(116,198,186,0.82) 100%);
+      color: white;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .clear-filters-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(116,198,186,0.55);
+      box-shadow: 0 10px 22px rgba(0,0,0,0.24), 0 0 14px rgba(116,198,186,0.16);
+    }
+
+    .clear-filters-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .result-count {
+      color: rgba(255,255,255,0.58);
+      font-size: 13px;
+      margin-bottom: 16px;
+    }
+
+    details {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 12px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      color: white;
+      font-weight: 800;
+      text-transform: uppercase;
+      list-style: none;
+    }
+
+    summary::-webkit-details-marker { display: none; }
+
+    .filter-options {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #c0c0cf;
+      font-size: 13px;
+    }
+
+    .filter-option input { accent-color: #74c6ba; }
+
+    .nft-panel { padding: 22px; }
+
+    .nft-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .nft-card {
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.045);
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .nft-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(116,198,186,0.55);
+      box-shadow: 0 0 24px rgba(116,198,186,0.10);
+    }
+
+    .nft-card img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      display: block;
+      background: rgba(0,0,0,0.2);
+    }
+
+    .nft-card p {
+      padding: 10px;
+      color: white;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .load-more-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .load-more-btn {
+      height: 46px;
+      padding: 0 28px;
+      font-size: 13px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0,0,0,0.72);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.is-visible { display: flex; }
+
+    .modal-card {
+      position: relative;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 28px;
+      width: min(980px, 100%);
+      max-height: 88vh;
+      overflow: auto;
+      padding: 28px;
+      border-radius: 28px;
+      border: 1px solid rgba(116,198,186,0.28);
+      background: rgba(15,15,20,0.95);
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      width: 42px;
+      height: 38px;
+      font-size: 20px;
+      z-index: 2;
+    }
+
+    .modal-image {
+      width: 100%;
+      aspect-ratio: 1 / 1.4;
+      max-height: 620px;
+      border-radius: 20px;
+      object-fit: contain;
+      background: rgba(0,0,0,0.25);
+    }
+
+    .modal-info h2 {
+      font-family: "Gamer", sans-serif;
+      font-size: 56px;
+      margin-bottom: 20px;
+      padding-right: 50px;
+    }
+
+    .modal-info p {
+      color: #c0c0cf;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .trait-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .trait {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .trait span {
+      display: block;
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      text-transform: uppercase;
+    }
+
+    .trait strong {
+      display: block;
+      color: white;
+      margin-top: 4px;
+    }
+
+    .drawer-backdrop { display: none; }
+
+    @media (max-width: 767px) {
+      body { padding-top: 70px; }
+
+      .detail-wrap {
+        position: static;
+        z-index: auto;
+        width: 100%;
+        margin: 0 auto 70px;
+      }
+
+      .mobile-header {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 90;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 66px;
+        padding: 10px 14px;
+        background: rgba(7,7,11,0.82);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+      }
+
+      .mobile-back {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 36px;
+        padding: 0 14px;
+        font-size: 13px;
+      }
+
+      .mobile-back:hover { transform: translateY(-50%); }
+
+      .mobile-title {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-family: "Gamer", sans-serif;
+        font-size: 42px;
+        line-height: 0.9;
+        color: white;
+      }
+
+      .detail-top {
+        display: block;
+        text-align: center;
+        padding: 18px 0 18px;
+      }
+
+      .detail-top .back-link,
+      .detail-title { display: none; }
+
+      .top-links {
+        justify-content: center;
+        display: flex;
+        margin-top: 8px;
+      }
+
+      .official-text {
+        text-align: left;
+        font-size: 13px;
+        line-height: 1.75;
+        margin: 0 auto 22px;
+        padding: 0 2px;
+      }
+
+      .mobile-filter-bar {
+        position: sticky;
+        top: 66px;
+        z-index: 30;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0 14px;
+        background: linear-gradient(180deg, rgba(7,7,11,0.94), rgba(7,7,11,0.72), rgba(7,7,11,0));
+        backdrop-filter: blur(8px);
+      }
+
+      .filter-toggle {
+        height: 40px;
+        padding: 0 18px;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+      }
+
+      .mobile-count {
+        color: rgba(255,255,255,0.55);
+        font-size: 12px;
+      }
+
+      .collection-layout { display: block; }
+
+      .filter-panel {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: auto;
+        z-index: 60;
+        max-height: 74vh;
+        overflow: auto;
+        transform: translateY(110%);
+        transition: transform 0.28s ease;
+        border-radius: 26px 26px 0 0;
+        padding: 22px;
+        background: linear-gradient(180deg, rgba(18,32,32,0.99), rgba(8,12,16,0.99));
+        backdrop-filter: none;
+      }
+
+      .filter-panel.is-open { transform: translateY(0); }
+
+      .drawer-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+
+      .filter-head { margin-bottom: 12px; }
+
+      .clear-filters-btn {
+        height: 34px;
+        padding: 0 13px;
+      }
+
+      .drawer-close {
+        display: inline-flex;
+        width: 42px;
+        height: 38px;
+        font-size: 18px;
+      }
+
+      .drawer-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 55;
+        display: none;
+        background: rgba(0,0,0,0.66);
+        backdrop-filter: blur(4px);
+      }
+
+      .drawer-backdrop.is-visible { display: block; }
+
+      .nft-panel {
+        padding: 14px;
+        border-radius: 22px;
+      }
+
+      .nft-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .nft-card { border-radius: 16px; }
+
+      .nft-card p {
+        font-size: 11px;
+        padding: 8px;
+      }
+
+      .modal {
+        align-items: stretch;
+        justify-content: stretch;
+        padding: 0;
+        z-index: 100;
+      }
+
+      .modal-card {
+        display: block;
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        overflow: auto;
+        border-radius: 0;
+        padding: 74px 18px 34px;
+        border: none;
+        background: rgba(10,10,14,0.97);
+      }
+
+      .modal-close {
+        position: fixed;
+        right: 14px;
+        top: 12px;
+        width: 42px;
+        height: 42px;
+        z-index: 120;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal-image {
+        width: 100%;
+        max-height: none;
+        aspect-ratio: auto;
+        object-fit: contain;
+        border-radius: 18px;
+        margin-bottom: 22px;
+      }
+
+      .modal-info h2 {
+        font-size: 46px;
+        padding-right: 0;
+      }
+
+      .modal-info p { font-size: 13px; }
+
+      .trait-list { grid-template-columns: 1fr; }
+
+      .trait {
+        padding: 16px;
+        border-radius: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="mobile-header">
+    <a href="../../index.html" class="back-link mobile-back">Back</a>
+    <div class="mobile-title">ZCAPS</div>
+    <div></div>
+  </div>
+
+  <div class="detail-wrap">
+
+    <div class="detail-top">
+
+      <a href="../../index.html" class="back-link">Back</a>
+
+      <h1 class="detail-title">ZCAPS</h1>
+
+      <div class="top-links">
+  <a href="https://kaspa.com/nft/collections/ZXCAPS" target="_blank" class="icon-btn" aria-label="ZXCAPS KaspaCom">
+    <img src="../../assets/link/kaspacom.png" alt="KaspaCom">
+  </a>
+</div>
+
+    <p class="official-text">
+      𝙕𝘾𝘼𝙋𝙎 𝘪𝘴 𝘢 𝘤𝘰𝘭𝘭𝘢𝘣𝘰𝘳𝘢𝘵𝘪𝘷𝘦 𝘒𝘙𝘊-721 𝘕𝘍𝘛 𝘤𝘰𝘭𝘭𝘦𝘤𝘵𝘪𝘰𝘯 𝘣𝘳𝘪𝘯𝘨𝘪𝘯𝘨 𝘵𝘰𝘨𝘦𝘵𝘩𝘦𝘳 𝘡𝘮𝘦𝘮𝘦 𝘢𝘯𝘥 𝘒𝘢𝘴𝘊𝘈𝘗. 𝘌𝘢𝘤𝘩 𝘢𝘳𝘵𝘸𝘰𝘳𝘬 𝘧𝘶𝘴𝘦𝘴 𝘮𝘦𝘮𝘦 𝘤𝘶𝘭𝘵𝘶𝘳𝘦 𝘸𝘪𝘵𝘩 𝘒𝘢𝘴𝘊𝘈𝘗'𝘴 𝘮𝘺𝘵𝘩𝘪𝘤 𝘮𝘢𝘴𝘬 𝘷𝘪𝘴𝘶𝘢𝘭 𝘪𝘥𝘦𝘯𝘵𝘪𝘵𝘺.
+    </p>
+
+    <div class="mobile-filter-bar">
+      <button id="filterToggle" class="filter-toggle">FILTER</button>
+      <span id="mobileCount" class="mobile-count">Loading...</span>
+    </div>
+
+    <section class="collection-layout">
+
+      <aside id="filterPanel" class="filter-panel">
+        <div class="drawer-head">
+
+          <div class="filter-head">
+            <h2 class="filter-title">FILTER</h2>
+
+            <button id="clearFiltersBtn" class="clear-filters-btn" type="button" disabled>
+              CLEAR
+            </button>
+          </div>
+
+          <button id="drawerClose" class="drawer-close">▼</button>
+
+        </div>
+
+        <p id="resultCount" class="result-count">Loading metadata...</p>
+        <div id="filters"></div>
+      </aside>
+
+      <section class="nft-panel">
+        <div id="nftGrid" class="nft-grid"></div>
+
+        <div class="load-more-wrap">
+          <button id="loadMoreBtn" class="load-more-btn">LOAD MORE</button>
+        </div>
+      </section>
+
+    </section>
+
+  </div>
+
+  <div id="drawerBackdrop" class="drawer-backdrop"></div>
+
+  <div id="nftModal" class="modal">
+    <div class="modal-card">
+      <button id="modalClose" class="modal-close">×</button>
+
+      <img id="modalImage" class="modal-image" src="" alt="ZCAPS NFT">
+
+      <div class="modal-info">
+        <h2 id="modalName"></h2>
+        <p id="modalDescription"></p>
+        <div id="modalTraits" class="trait-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const METADATA_CID = "bafybeiestxhr743calzt64jlkpahqliwmxm3xgl5tknzez46skja73zz6i";
+
+    const TOTAL_SUPPLY = 48;
+    const ITEMS_PER_LOAD = 48;
+
+    const FILTER_KEYS = [
+      "Type",
+      "Character",
+      "Mask",
+      "Color",
+      "Background",
+      "Special"
+    ];
+
+    const nftGrid = document.getElementById("nftGrid");
+    const filtersEl = document.getElementById("filters");
+    const resultCount = document.getElementById("resultCount");
+    const mobileCount = document.getElementById("mobileCount");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+    const filterPanel = document.getElementById("filterPanel");
+    const filterToggle = document.getElementById("filterToggle");
+    const drawerClose = document.getElementById("drawerClose");
+    const drawerBackdrop = document.getElementById("drawerBackdrop");
+    const clearFiltersBtn = document.getElementById("clearFiltersBtn");
+
+    const nftModal = document.getElementById("nftModal");
+    const modalClose = document.getElementById("modalClose");
+    const modalImage = document.getElementById("modalImage");
+    const modalName = document.getElementById("modalName");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalTraits = document.getElementById("modalTraits");
+
+    let allNFTs = [];
+    let currentItems = [];
+    let visibleCount = ITEMS_PER_LOAD;
+    let selectedFilters = {};
+
+    function metadataCandidates(id) {
+      return [
+        `https://ipfs.io/ipfs/${METADATA_CID}/${id}.json`,
+        `https://gateway.pinata.cloud/ipfs/${METADATA_CID}/${id}.json`,
+        `https://${METADATA_CID}.ipfs.inbrowser.link/${id}.json`,
+        `https://ipfs.io/ipfs/${METADATA_CID}/${id}`,
+        `https://gateway.pinata.cloud/ipfs/${METADATA_CID}/${id}`
+      ];
+    }
+
+    function resolveIpfsUrl(value) {
+      if (!value) return "";
+
+      const src = String(value);
+
+      if (src.startsWith("ipfs://ipfs/")) {
+        return `https://ipfs.io/ipfs/${src.replace("ipfs://ipfs/", "")}`;
+      }
+
+      if (src.startsWith("ipfs://")) {
+        return `https://ipfs.io/ipfs/${src.replace("ipfs://", "")}`;
+      }
+
+      if (src.startsWith("http://") || src.startsWith("https://")) {
+        return src;
+      }
+
+      return src;
+    }
+
+    function imageCandidatesFromMetadata(metadata, id) {
+      const image = resolveIpfsUrl(metadata.image || metadata.image_url || metadata.animation_url);
+
+      const candidates = [];
+
+      if (image) {
+        candidates.push(image);
+
+        if (image.includes("ipfs.io/ipfs/")) {
+          candidates.push(image.replace("https://ipfs.io/ipfs/", "https://gateway.pinata.cloud/ipfs/"));
+        }
+      }
+
+      candidates.push(`https://ipfs.io/ipfs/${METADATA_CID}/${id}.png`);
+      candidates.push(`https://gateway.pinata.cloud/ipfs/${METADATA_CID}/${id}.png`);
+      candidates.push(`https://ipfs.io/ipfs/${METADATA_CID}/${id}.webp`);
+      candidates.push(`https://gateway.pinata.cloud/ipfs/${METADATA_CID}/${id}.webp`);
+
+      return [...new Set(candidates)];
+    }
+
+    function getAttribute(metadata, key) {
+      if (!metadata || !Array.isArray(metadata.attributes)) return "";
+
+      const found = metadata.attributes.find((attr) => {
+        return String(attr.trait_type || "").toLowerCase() === key.toLowerCase();
+      });
+
+      return found ? String(found.value) : "";
+    }
+
+    async function fetchFirstJson(urls) {
+      for (const url of urls) {
+        try {
+          const response = await fetch(url);
+
+          if (!response.ok) continue;
+
+          const data = await response.json();
+          return data;
+        } catch (error) {
+          continue;
+        }
+      }
+
+      throw new Error("metadata not found");
+    }
+
+    async function loadMetadata(id) {
+      try {
+        const metadata = await fetchFirstJson(metadataCandidates(id));
+
+        const nft = {
+          id,
+          name: metadata.name || `ZCAPS #${id}`,
+          description: metadata.description || "",
+          attributes: metadata.attributes || [],
+          imageUrls: imageCandidatesFromMetadata(metadata, id)
+        };
+
+        FILTER_KEYS.forEach((key) => {
+          nft[key] = getAttribute(metadata, key);
+        });
+
+        return nft;
+      } catch (error) {
+        return {
+          id,
+          name: `ZCAPS #${id}`,
+          description: "",
+          attributes: [],
+          imageUrls: [
+            `https://ipfs.io/ipfs/${METADATA_CID}/${id}.png`,
+            `https://gateway.pinata.cloud/ipfs/${METADATA_CID}/${id}.png`
+          ],
+          ...Object.fromEntries(FILTER_KEYS.map((key) => [key, ""]))
+        };
+      }
+    }
+
+    async function loadAllNFTs() {
+      const ids = Array.from({ length: TOTAL_SUPPLY }, (_, i) => i + 1);
+      const batchSize = 12;
+      const results = [];
+
+      for (let i = 0; i < ids.length; i += batchSize) {
+        const batch = ids.slice(i, i + batchSize);
+        const batchResults = await Promise.all(batch.map(loadMetadata));
+
+        results.push(...batchResults);
+        resultCount.textContent = `Loading metadata... ${results.length} / ${TOTAL_SUPPLY}`;
+        mobileCount.textContent = `Loading... ${results.length}`;
+      }
+
+      allNFTs = results;
+      currentItems = allNFTs;
+
+      buildFilters();
+      renderNFTs();
+      updateClearButton();
+    }
+
+    function updateClearButton() {
+      const hasActiveFilter = FILTER_KEYS.some((key) => {
+        return selectedFilters[key] && selectedFilters[key].size > 0;
+      });
+
+      clearFiltersBtn.disabled = !hasActiveFilter;
+    }
+
+    function buildFilters() {
+      filtersEl.innerHTML = "";
+
+      FILTER_KEYS.forEach((key) => {
+        const values = [...new Set(
+          allNFTs
+            .map((nft) => nft[key])
+            .filter((value) => value && value.trim() !== "")
+        )].sort();
+
+        selectedFilters[key] = new Set();
+
+        if (values.length === 0) return;
+
+        const details = document.createElement("details");
+        details.open = key === FILTER_KEYS[0];
+
+        const summary = document.createElement("summary");
+        summary.textContent = key;
+
+        const options = document.createElement("div");
+        options.className = "filter-options";
+
+        values.forEach((value) => {
+          const label = document.createElement("label");
+          label.className = "filter-option";
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.value = value;
+
+          checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+              selectedFilters[key].add(value);
+            } else {
+              selectedFilters[key].delete(value);
+            }
+
+            applyFilters();
+          });
+
+          label.appendChild(checkbox);
+          label.appendChild(document.createTextNode(value));
+          options.appendChild(label);
+        });
+
+        details.appendChild(summary);
+        details.appendChild(options);
+        filtersEl.appendChild(details);
+      });
+    }
+
+    function applyFilters() {
+      visibleCount = ITEMS_PER_LOAD;
+
+      currentItems = allNFTs.filter((nft) => {
+        return FILTER_KEYS.every((key) => {
+          if (!selectedFilters[key] || selectedFilters[key].size === 0) return true;
+          return selectedFilters[key].has(nft[key]);
+        });
+      });
+
+      renderNFTs();
+      updateClearButton();
+    }
+
+    function setImageWithFallback(img, urls) {
+      img.dataset.step = "0";
+      img.src = urls[0];
+
+      img.onerror = () => {
+        let step = Number(img.dataset.step);
+        step++;
+
+        if (step < urls.length) {
+          img.dataset.step = step;
+          img.src = urls[step];
+        }
+      };
+    }
+
+    function renderNFTs() {
+      nftGrid.innerHTML = "";
+
+      const visibleItems = currentItems.slice(0, visibleCount);
+
+      resultCount.textContent = `${currentItems.length} / ${TOTAL_SUPPLY} NFTs`;
+      mobileCount.textContent = `${currentItems.length} NFTs`;
+
+      visibleItems.forEach((nft) => {
+        const card = document.createElement("article");
+
+        card.className = "nft-card";
+
+        card.innerHTML = `
+          <img
+            src=""
+            alt="${nft.name}"
+            loading="lazy"
+            data-step="0"
+          >
+          <p>${nft.name}</p>
+        `;
+
+        const img = card.querySelector("img");
+        setImageWithFallback(img, nft.imageUrls);
+
+        card.addEventListener("click", () => {
+          openNFTModal(nft);
+        });
+
+        nftGrid.appendChild(card);
+      });
+
+      if (visibleCount >= currentItems.length) {
+        loadMoreBtn.style.display = "none";
+      } else {
+        loadMoreBtn.style.display = "inline-flex";
+      }
+    }
+
+    function openNFTModal(nft) {
+      setImageWithFallback(modalImage, nft.imageUrls);
+
+      modalName.textContent = nft.name || `ZCAPS #${nft.id}`;
+      modalDescription.textContent = nft.description || "";
+
+      modalTraits.innerHTML = "";
+
+      nft.attributes.forEach((item) => {
+        const trait = document.createElement("div");
+        trait.className = "trait";
+
+        trait.innerHTML = `
+          <span>${item.trait_type || "Trait"}</span>
+          <strong>${item.value || "-"}</strong>
+        `;
+
+        modalTraits.appendChild(trait);
+      });
+
+      nftModal.classList.add("is-visible");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeNFTModal() {
+      nftModal.classList.remove("is-visible");
+      document.body.style.overflow = "";
+    }
+
+    function openFilterDrawer() {
+      filterPanel.classList.add("is-open");
+      drawerBackdrop.classList.add("is-visible");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeFilterDrawer() {
+      filterPanel.classList.remove("is-open");
+      drawerBackdrop.classList.remove("is-visible");
+      document.body.style.overflow = "";
+    }
+
+    loadMoreBtn.addEventListener("click", () => {
+      visibleCount += ITEMS_PER_LOAD;
+      renderNFTs();
+    });
+
+    modalClose.addEventListener("click", closeNFTModal);
+
+    nftModal.addEventListener("click", (event) => {
+      if (event.target === nftModal) {
+        closeNFTModal();
+      }
+    });
+
+    filterToggle.addEventListener("click", openFilterDrawer);
+    drawerClose.addEventListener("click", closeFilterDrawer);
+    drawerBackdrop.addEventListener("click", closeFilterDrawer);
+
+    clearFiltersBtn.addEventListener("click", () => {
+      FILTER_KEYS.forEach((key) => {
+        if (selectedFilters[key]) selectedFilters[key].clear();
+      });
+
+      document
+        .querySelectorAll('#filters input[type="checkbox"]')
+        .forEach((checkbox) => {
+          checkbox.checked = false;
+        });
+
+      visibleCount = ITEMS_PER_LOAD;
+      currentItems = allNFTs;
+
+      renderNFTs();
+      updateClearButton();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeNFTModal();
+        closeFilterDrawer();
+      }
+    });
+
+    loadAllNFTs();
+  </script>
+
+</body>
+
+</html>
