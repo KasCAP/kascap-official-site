@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>YONA SPACE | KasCAP</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="../../favicon.png" />
+</head>
+
+<body>
+  <div class="mobile-header">
+    <a href="../../index.html" class="back-link mobile-back">Back</a>
+    <div class="mobile-title">YONA SPACE</div>
+    <div></div>
+  </div>
+
+  <div class="detail-wrap">
+    <div class="detail-top">
+      <a href="../../index.html" class="back-link">Back</a>
+      <h1 class="detail-title">YONA SPACE</h1>
+      <div></div>
+    </div>
+
+    <section class="space-machine" aria-label="YONA SPACE">
+      <div class="top-bar">
+        <button
+          id="soundBtn"
+          class="sound-toggle"
+          type="button"
+          aria-pressed="true"
+          aria-label="Sound toggle"
+        >
+          <span class="toggle-label off-label">OFF</span>
+          <span class="toggle-label on-label">ON</span>
+        </button>
+
+        <button id="resetBtn" class="back-link mini-action" type="button">
+          RESET DATA
+        </button>
+      </div>
+
+      <div class="data-panel">
+        <div>
+          <span>CREDIT</span>
+          <strong id="creditText">10</strong>
+        </div>
+
+        <div>
+          <span>TODAY BEST</span>
+          <strong id="bestScoreText">0000</strong>
+        </div>
+
+        <div>
+          <span>RUN SCORE</span>
+          <strong id="scoreText">0000</strong>
+        </div>
+
+        <div>
+          <span>KasCoin</span>
+          <strong id="coinText">00</strong>
+        </div>
+      </div>
+
+      <div class="screen-wrap">
+        <canvas id="gameCanvas"></canvas>
+
+        <div id="countdown" class="countdown hidden">3</div>
+
+        <div id="startOverlay" class="start-overlay">
+          <img src="assets/ch_01.png" class="start-character" alt="YONA character" />
+          <button id="startBtn" class="back-link start-btn" type="button">START</button>
+        </div>
+      </div>
+
+      <div class="control-row">
+        <button id="jumpBtn" class="back-link control-btn" type="button" disabled>
+          JUMP
+        </button>
+
+        <button id="downBtn" class="back-link control-btn" type="button" disabled>
+          DOWN
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <div id="gameOverModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>GAME OVER</h2>
+
+      <div class="result-explosion">💥</div>
+
+      <div class="result-list">
+        <div>
+          <span>RUN SCORE</span>
+          <strong id="runScoreText">0000</strong>
+        </div>
+
+        <div>
+          <span>KasCoin BONUS</span>
+          <strong id="coinBonusText">+0000</strong>
+        </div>
+
+        <div class="total">
+          <span>TOTAL SCORE</span>
+          <strong id="totalScoreText">0000</strong>
+        </div>
+
+        <div>
+          <span>CREDIT LEFT</span>
+          <strong id="creditLeftText">00</strong>
+        </div>
+      </div>
+
+      <button id="retryBtn" class="back-link retry-btn" type="button">
+        RETRY
+      </button>
+    </div>
+  </div>
+
+  <div id="resetModal" class="modal hidden">
+    <div class="modal-card">
+      <h2>Are you sure?</h2>
+      <p>All YONA SPACE data will be reset.</p>
+
+      <div class="modal-actions">
+        <button id="resetYesBtn" class="back-link modal-btn" type="button">
+          YES
+        </button>
+
+        <button id="resetNoBtn" class="back-link modal-btn" type="button">
+          NO
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
