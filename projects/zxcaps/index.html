@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ZCAPS</title>
+  <title>ZXCAPS</title>
 
   <link rel="stylesheet" href="../../style.css">
   <link rel="icon" type="image/png" href="/favicon.png">
@@ -579,7 +579,7 @@
 
   <div class="mobile-header">
     <a href="../../index.html" class="back-link mobile-back">Back</a>
-    <div class="mobile-title">ZCAPS</div>
+    <div class="mobile-title">ZXCAPS</div>
     <div></div>
   </div>
 
@@ -589,7 +589,7 @@
 
       <a href="../../index.html" class="back-link">Back</a>
 
-      <h1 class="detail-title">ZCAPS</h1>
+      <h1 class="detail-title">ZXCAPS</h1>
 
       <div class="top-links">
   <a href="https://kaspa.com/nft/collections/ZXCAPS" target="_blank" class="icon-btn" aria-label="ZXCAPS KaspaCom">
@@ -630,7 +630,7 @@
       <section class="nft-panel">
         <div id="nftGrid" class="nft-grid"></div>
 
-        <div class="load-more-wrap">
+        <div class="load-more-wrap"F
           <button id="loadMoreBtn" class="load-more-btn">LOAD MORE</button>
         </div>
       </section>
@@ -645,7 +645,7 @@
     <div class="modal-card">
       <button id="modalClose" class="modal-close">×</button>
 
-      <img id="modalImage" class="modal-image" src="" alt="ZCAPS NFT">
+      <img id="modalImage" class="modal-image" src="" alt="ZXCAPS NFT">
 
       <div class="modal-info">
         <h2 id="modalName"></h2>
@@ -778,7 +778,7 @@
 
         const nft = {
           id,
-          name: metadata.name || `ZCAPS #${id}`,
+          name: metadata.name || `ZXCAPS #${id}`,
           description: metadata.description || "",
           attributes: metadata.attributes || [],
           imageUrls: imageCandidatesFromMetadata(metadata, id)
@@ -792,7 +792,7 @@
       } catch (error) {
         return {
           id,
-          name: `ZCAPS #${id}`,
+          name: `ZXCAPS #${id}`,
           description: "",
           attributes: [],
           imageUrls: [
@@ -958,7 +958,7 @@
     function openNFTModal(nft) {
       setImageWithFallback(modalImage, nft.imageUrls);
 
-      modalName.textContent = nft.name || `ZCAPS #${nft.id}`;
+      modalName.textContent = nft.name || `ZXCAPS #${nft.id}`;
       modalDescription.textContent = nft.description || "";
 
       modalTraits.innerHTML = "";
