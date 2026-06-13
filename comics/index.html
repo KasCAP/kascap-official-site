@@ -63,18 +63,25 @@
 
         <div class="chapter-left">
           <h2>Chapter 2</h2>
-          <p class="coming-soon">
-            COMING SOON
-          </p>
         </div>
 
         <div class="chapter-buttons">
 
-          <button class="comic-btn disabled">
+          <button
+            type="button"
+            class="comic-btn chapter2-btn"
+            data-chapter="2"
+            data-lang="jp"
+            data-required="1">
             JP
           </button>
 
-          <button class="comic-btn disabled">
+          <button
+            type="button"
+            class="comic-btn chapter2-btn"
+            data-chapter="2"
+            data-lang="en"
+            data-required="1">
             EN
           </button>
 
@@ -119,6 +126,43 @@
 
   </main>
 
+  <!-- Chapter 2 Holder Gate Modal -->
+  <div id="chapterGateModal" class="gate-modal" aria-hidden="true">
+    <div class="gate-panel" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+
+      <button id="gateCloseBtn" class="gate-close" type="button" aria-label="Close">
+        ×
+      </button>
+
+      <div class="gate-inner">
+
+        <h2 id="gateTitle" class="gate-title">
+          Chapter 2
+        </h2>
+
+        <p class="gate-subtitle">
+          🔒 HOLDER ONLY
+        </p>
+
+        <p class="gate-description">
+          To read Chapter 2,<br>
+          you must hold at least one KASHIN NFT.
+        </p>
+
+        <button id="connectWalletBtn" class="gate-connect" type="button">
+          CONNECT WALLET
+        </button>
+
+        <p id="gateStatus" class="gate-status">
+          Connect your wallet to verify your KASHIN holdings.
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="./comics-gate.js"></script>
 </body>
 
 </html>

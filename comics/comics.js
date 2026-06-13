@@ -2,12 +2,21 @@
    KASHIN COMIC VIEWER
 ========================= */
 
+const KASCAP_ASSET_API = "https://kascap-auth.mr0834gogo.workers.dev";
+
 const params = new URLSearchParams(window.location.search);
 
 const chapter = params.get("chapter") || "1";
 const lang = params.get("lang") || "jp";
+const isProtected = params.get("protected") === "1";
+const accessToken = params.get("token") || sessionStorage.getItem("kascapChapter2Token") || "";
 
-const totalPages = 16;
+const totalPagesByChapter = {
+  "1": 16,
+  "2": 17,
+};
+
+const totalPages = totalPagesByChapter[chapter] || 16;
 let currentPage = 1;
 
 const comicImage = document.getElementById("comicImage");
@@ -27,9 +36,14 @@ function getChapterFolder(chapterNumber) {
 }
 
 function getImagePath() {
-  const chapterFolder = getChapterFolder(chapter);
   const pageName = `${padPageNumber(currentPage)}.webp`;
 
+  if (chapter === "2" || isProtected) {
+    const tokenParam = accessToken ? `?token=${encodeURIComponent(accessToken)}` : "";
+    return `${KASCAP_ASSET_API}/protected/comics/kashin/${lang}/chapter2/${pageName}${tokenParam}`;
+  }
+
+  const chapterFolder = getChapterFolder(chapter);
   return `../assets/comics/kashin/${chapterFolder}/${lang}/${pageName}`;
 }
 
@@ -96,4 +110,8 @@ function handleSwipe() {
   }
 }
 
-updateViewer();
+if ((chapter === "2" || isProtected) && !accessToken) {
+  window.location.href = "./index.html";
+} else {
+  updateViewer();
+}
