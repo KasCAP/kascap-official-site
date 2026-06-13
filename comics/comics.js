@@ -84,6 +84,9 @@ document.addEventListener("keydown", (event) => {
 
 /* =========================
    SWIPE SUPPORT
+   Japanese manga direction:
+   swipe left to right  -> next page
+   swipe right to left  -> previous page
 ========================= */
 
 let touchStartX = 0;
@@ -104,9 +107,9 @@ function handleSwipe() {
   if (Math.abs(swipeDistance) < 50) return;
 
   if (swipeDistance < 0) {
-    nextPage();
-  } else {
     prevPage();
+  } else {
+    nextPage();
   }
 }
 
