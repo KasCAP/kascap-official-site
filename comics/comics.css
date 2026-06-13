@@ -595,3 +595,19 @@
     width: min(360px, 100%);
   }
 }
+/* =========================
+   FORCE HOLDER GATE MODAL
+========================= */
+
+.gate-modal {
+  display: none !important;
+}
+
+.gate-modal.active {
+  display: flex !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 9999 !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
