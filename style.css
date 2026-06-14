@@ -18,7 +18,6 @@ body {
     #07070b;
 
   color: white;
-
   overflow-x: hidden;
 
   font-family:
@@ -128,10 +127,10 @@ main {
 .hero-tagline {
   flex: 1;
 
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.86);
 
   font-size: 14px;
-  font-weight: 900;
+  font-weight: 400;
   letter-spacing: 0.22em;
 }
 
@@ -168,7 +167,7 @@ main {
   color: #b8fff5;
 
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.18em;
 }
 
@@ -237,8 +236,8 @@ main {
 
 .card-content h2 {
   font-family: "Gamer", sans-serif;
-  font-size: 38px;
-  line-height: 0.9;
+  font-size: 46px;
+  line-height: 0.86;
   letter-spacing: 0.02em;
 
   color: white;
@@ -254,7 +253,7 @@ main {
   color: rgba(255, 255, 255, 0.78);
 
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.55;
 }
 
@@ -269,7 +268,6 @@ main {
   object-position: right bottom;
 
   opacity: 0.58;
-
   pointer-events: none;
 
   filter:
@@ -400,7 +398,7 @@ body.modal-open {
 
   color: white;
   font-size: 24px;
-  font-weight: 900;
+  font-weight: 500;
   line-height: 1;
   cursor: pointer;
 }
@@ -416,7 +414,7 @@ body.modal-open {
 
   color: #b8fff5;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.18em;
 }
 
@@ -437,7 +435,7 @@ body.modal-open {
 
   font-size: 24px;
   line-height: 1.1;
-  font-weight: 900;
+  font-weight: 500;
 
   color: white;
 }
@@ -447,7 +445,7 @@ body.modal-open {
 
   color: rgba(255, 255, 255, 0.88);
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.7;
 }
 
@@ -463,7 +461,7 @@ body.modal-open {
 
   color: #ffffff;
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
 
@@ -548,11 +546,12 @@ body.modal-open {
   }
 
   .card-content h2 {
-    font-size: 34px;
+    font-size: 40px;
   }
 
   .card-content p {
     font-size: 13px;
+    font-weight: 400;
   }
 
   .card-image {
