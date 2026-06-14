@@ -467,3 +467,14 @@ strong {
 .status-text.error {
   color: #b3261e;
 }
+.kca-loading {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.loading-text {
+  margin-top: 24px;
+  color: rgba(255,255,255,0.82);
+  font-size: 15px;
+  font-weight: 700;
+}
