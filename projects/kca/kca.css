@@ -1,0 +1,469 @@
+@font-face {
+  font-family: "Gamer";
+  src: url("../../assets/fonts/Gamer.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      180deg,
+      #76dac0 0%,
+      #257d7f 100%
+    );
+
+  color: #071b2a;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  overflow-x: hidden;
+}
+
+.kca-page {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 18px 22px 96px;
+}
+
+/* =========================
+   TOP
+========================= */
+
+.top-bar {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+}
+
+.back-link {
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 44px;
+  padding: 0 18px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(180, 255, 244, 0.18);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(116, 198, 186, 0.18) 0%,
+      rgba(116, 198, 186, 0.42) 45%,
+      rgba(116, 198, 186, 0.82) 100%
+    );
+
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+.kca-label,
+.benefit-no,
+.private-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  letter-spacing: 0.16em;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.kca-label {
+  height: 36px;
+  padding: 0 18px;
+
+  border-radius: 999px;
+  color: #064f4b;
+
+  background: rgba(210, 255, 250, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+
+  box-shadow:
+    0 10px 24px rgba(0, 92, 91, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.kca-hero {
+  margin-top: 2px;
+  text-align: center;
+}
+
+.kca-title {
+  margin-top: -18px;
+
+  font-family: "Gamer", sans-serif;
+  font-size: clamp(64px, 12vw, 140px);
+  line-height: 0.75;
+  letter-spacing: 0.02em;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 4px 0 rgba(0, 70, 72, 0.22),
+    0 0 28px rgba(220, 255, 250, 0.48);
+}
+
+/* =========================
+   KCA CARD
+========================= */
+
+.kca-card-showcase {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 22px auto 52px;
+}
+
+.kca-card-img {
+  width: min(560px, 90%);
+  display: block;
+
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+/* =========================
+   BENEFITS
+========================= */
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.benefit-card {
+  min-height: 360px;
+  padding: 26px;
+
+  border-radius: 28px;
+  border: 1px solid rgba(218, 255, 251, 0.46);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(245, 255, 253, 0.84),
+      rgba(214, 255, 249, 0.68)
+    );
+
+  box-shadow:
+    0 24px 70px rgba(0, 32, 46, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+
+  backdrop-filter: blur(14px);
+}
+
+.benefit-no,
+.private-label {
+  height: 36px;
+  padding: 0 18px;
+
+  border-radius: 999px;
+
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #079588,
+      #36bfd1
+    );
+
+  box-shadow:
+    0 10px 28px rgba(0, 91, 90, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+.benefit-no {
+  display: flex;
+
+  width: fit-content;
+
+  margin:
+    0 auto 18px;
+
+  height: 36px;
+  padding: 0 18px;
+}
+
+.benefit-card h2 {
+  margin-bottom: 16px;
+
+  font-size: 24px;
+  line-height: 1.12;
+  color: #071b2a;
+}
+
+.benefit-card p,
+.secret-text p,
+.info-box p {
+  margin-top: 12px;
+
+  font-size: 15px;
+  line-height: 1.75;
+  color: rgba(7, 27, 42, 0.76);
+}
+
+strong {
+  color: #027e74;
+}
+
+.info-box,
+.note {
+  padding: 13px 14px;
+
+  border-radius: 16px;
+  background: rgba(116, 255, 232, 0.16);
+  border: 1px solid rgba(4, 128, 117, 0.18);
+}
+
+.info-box {
+  margin: 16px 0;
+}
+
+.info-box p:first-child {
+  margin-top: 0;
+}
+
+/* =========================
+   SECRET
+========================= */
+
+.secret-card {
+  margin-top: 30px;
+  padding: clamp(30px, 5vw, 60px);
+
+  border-radius: 34px;
+  border: 1px solid rgba(218, 255, 251, 0.5);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(237, 255, 253, 0.84),
+      rgba(157, 241, 229, 0.64)
+    );
+
+  box-shadow:
+    0 34px 90px rgba(0, 32, 46, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88);
+
+  backdrop-filter: blur(16px);
+}
+
+.secret-head {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.secret-card h2 {
+  font-size: clamp(34px, 6.2vw, 64px);
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+
+  color: #071b2a;
+}
+
+.secret-card h3 {
+  margin-top: 16px;
+
+  font-size: clamp(25px, 4.8vw, 44px);
+  line-height: 1.05;
+
+  color: #027e74;
+}
+
+.secret-lead {
+  margin-top: 18px;
+
+  font-size: clamp(18px, 3.4vw, 28px);
+  font-weight: 900;
+
+  color: #071b2a;
+}
+
+.secret-text {
+  max-width: 800px;
+  margin-top: 30px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 860px) {
+  .kca-page {
+    padding: 18px 16px 76px;
+  }
+
+  .top-bar {
+    min-height: 82px;
+    align-items: flex-start;
+    padding-top: 48px;
+  }
+
+  .back-link {
+    top: 0;
+    left: 0;
+  }
+
+  .kca-hero {
+    margin-top: 0;
+  }
+
+  .kca-title {
+    margin-top: -22px;
+    font-size: clamp(92px, 28vw, 150px);
+  }
+
+  .kca-card-showcase {
+    margin-top: 16px;
+  }
+
+  .kca-card-img {
+    width: min(460px, 96%);
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benefit-card {
+    min-height: auto;
+    border-radius: 22px;
+  }
+
+  .secret-card {
+    border-radius: 26px;
+  }
+}
+
+/* =========================
+   AUTH PAGE
+========================= */
+
+.kca-auth {
+  margin-top: 6px;
+  text-align: center;
+}
+
+.auth-card {
+  width: min(560px, 100%);
+  margin: 28px auto 0;
+  padding: 30px;
+
+  border-radius: 28px;
+  border: 1px solid rgba(218, 255, 251, 0.5);
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(245, 255, 253, 0.86),
+      rgba(214, 255, 249, 0.7)
+    );
+
+  box-shadow:
+    0 24px 70px rgba(0, 32, 46, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+
+  backdrop-filter: blur(14px);
+}
+
+.auth-card h2 {
+  font-size: clamp(28px, 5vw, 46px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #071b2a;
+}
+
+.auth-card p {
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(7, 27, 42, 0.72);
+}
+
+.connect-btn {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 24px;
+
+  border: 0;
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #079588,
+      #36bfd1
+    );
+
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 14px 34px rgba(0, 91, 90, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.34);
+}
+
+.connect-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.status-text {
+  margin-top: 18px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.status-text.loading {
+  color: #056d68;
+}
+
+.status-text.success {
+  color: #027e74;
+}
+
+.status-text.error {
+  color: #b3261e;
+}
