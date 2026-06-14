@@ -31,7 +31,119 @@ body {
   overflow-x: hidden;
 }
 
+/* =========================
+   FLOATING PARTICLES
+========================= */
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+}
+
+body::before {
+  width: 2px;
+  height: 2px;
+
+  background: rgba(255, 255, 255, 0.72);
+
+  box-shadow:
+    4vw 8vh rgba(255,255,255,.48),
+    9vw 21vh rgba(220,255,250,.24),
+    13vw 76vh rgba(255,255,255,.34),
+    18vw 43vh rgba(180,255,244,.36),
+    22vw 12vh rgba(255,255,255,.42),
+    27vw 88vh rgba(220,255,250,.24),
+    31vw 57vh rgba(255,255,255,.36),
+    36vw 29vh rgba(180,255,244,.32),
+    41vw 69vh rgba(255,255,255,.44),
+    47vw 16vh rgba(220,255,250,.28),
+    52vw 82vh rgba(255,255,255,.30),
+    58vw 39vh rgba(180,255,244,.38),
+    63vw 91vh rgba(255,255,255,.38),
+    68vw 24vh rgba(220,255,250,.26),
+    74vw 61vh rgba(255,255,255,.46),
+    79vw 11vh rgba(180,255,244,.34),
+    84vw 73vh rgba(255,255,255,.36),
+    89vw 36vh rgba(220,255,250,.22),
+    94vw 86vh rgba(255,255,255,.42),
+    98vw 51vh rgba(180,255,244,.30);
+
+  animation: particleDriftA 9s linear infinite;
+}
+
+body::after {
+  width: 3px;
+  height: 3px;
+
+  background: rgba(220, 255, 250, 0.46);
+
+  box-shadow:
+    3vw 54vh rgba(220,255,250,.28),
+    8vw 34vh rgba(255,255,255,.30),
+    15vw 93vh rgba(220,255,250,.22),
+    19vw 6vh rgba(255,255,255,.34),
+    26vw 48vh rgba(180,255,244,.26),
+    32vw 79vh rgba(255,255,255,.30),
+    38vw 18vh rgba(220,255,250,.24),
+    45vw 63vh rgba(255,255,255,.36),
+    50vw 97vh rgba(180,255,244,.22),
+    57vw 27vh rgba(220,255,250,.24),
+    61vw 70vh rgba(255,255,255,.28),
+    67vw 44vh rgba(180,255,244,.32),
+    72vw 14vh rgba(255,255,255,.34),
+    78vw 81vh rgba(220,255,250,.20),
+    83vw 52vh rgba(180,255,244,.28),
+    88vw 22vh rgba(255,255,255,.32),
+    93vw 68vh rgba(220,255,250,.20),
+    97vw 40vh rgba(255,255,255,.36);
+
+  animation: particleDriftB 13s linear infinite;
+}
+
+@keyframes particleDriftA {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: .82;
+  }
+
+  50% {
+    transform: translate3d(22px, -110px, 0);
+    opacity: .48;
+  }
+
+  100% {
+    transform: translate3d(-12px, -220px, 0);
+    opacity: .82;
+  }
+}
+
+@keyframes particleDriftB {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: .52;
+  }
+
+  50% {
+    transform: translate3d(-34px, -140px, 0);
+    opacity: .86;
+  }
+
+  100% {
+    transform: translate3d(18px, -280px, 0);
+    opacity: .52;
+  }
+}
+
 .kca-page {
+  position: relative;
+  z-index: 1;
+
   width: min(1120px, 100%);
   margin: 0 auto;
   padding: 18px 22px 96px;
