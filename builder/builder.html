@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KP Builder</title>
+  <link rel="stylesheet" href="builder.css" />
+</head>
+<body>
+  <header class="page-header">
+    <a class="back-btn" href="../index.html">Back</a>
+    <h1>KP Builder</h1>
+  </header>
+
+  <main class="builder-page">
+    <section class="parts-panel" aria-label="Builder parts">
+      <div id="genderSelect" class="gender-select" aria-label="Select Male or Female"></div>
+      <div id="controls" class="controls"></div>
+    </section>
+
+    <section class="preview-panel" aria-label="Builder preview">
+      <canvas id="punkCanvas" width="768" height="768"></canvas>
+
+      <div class="actions">
+        <button id="randomBtn" type="button">RANDOM</button>
+        <button id="resetBtn" type="button">ALL RESET</button>
+        <button id="downloadBtn" type="button">DL PNG</button>
+      </div>
+
+      <p class="notice">
+        Generated images are for personal profile and community use. They are not official NFTs.
+      </p>
+    </section>
+  </main>
+
+  <script src="builder.js"></script>
+</body>
+</html>

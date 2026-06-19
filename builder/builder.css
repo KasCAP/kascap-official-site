@@ -1,0 +1,407 @@
+@font-face {
+  font-family: "Gamer";
+  src: url("../assets/fonts/Gamer.ttf") format("truetype");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(116, 198, 186, 0.14), transparent 34%),
+    #07070b;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+.page-header {
+  position: relative;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.page-header h1 {
+  font-family: "Gamer", sans-serif;
+  font-size: clamp(30px, 6vw, 58px);
+  letter-spacing: 0.08em;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 4px 0 rgba(0, 0, 0, 0.35);
+}
+
+.back-btn,
+button {
+  cursor: pointer;
+  border-radius: 12px;
+  border: 1px solid rgba(180, 255, 244, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(116, 198, 186, 0.18) 0%,
+    rgba(116, 198, 186, 0.42) 45%,
+    rgba(116, 198, 186, 0.82) 100%
+  );
+  color: white;
+  font-weight: 800;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.20);
+  text-decoration: none;
+  transition: 0.16s ease;
+}
+
+.back-btn:hover,
+button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(116, 198, 186, 0.55);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.26),
+    0 0 18px rgba(116, 198, 186, 0.18);
+}
+
+.back-btn {
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  min-width: 88px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.builder-page {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 18px;
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(320px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.parts-panel,
+.preview-panel {
+  border: 1px solid rgba(180, 255, 244, 0.18);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.32);
+}
+
+.parts-panel {
+  padding: 22px;
+}
+
+.preview-panel {
+  position: sticky;
+  top: 18px;
+  padding: 18px;
+  max-width: 560px;
+  justify-self: end;
+  width: 100%;
+}
+
+.filter-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.filter-title {
+  font-family: "Gamer", sans-serif;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+}
+
+.filter-count {
+  margin-top: 16px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.clear-btn {
+  min-width: 74px;
+  min-height: 32px;
+  padding: 6px 12px;
+  font-size: 11px;
+  opacity: 0.82;
+}
+
+.controls {
+  display: grid;
+}
+
+.filter-group {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.filter-summary {
+  width: 100%;
+  min-height: 48px;
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+
+.filter-summary::-webkit-details-marker {
+  display: none;
+}
+
+.filter-summary::after {
+  content: "+";
+  color: rgba(116, 255, 230, 0.78);
+  font-weight: 900;
+}
+
+.filter-group[open] .filter-summary::after {
+  content: "−";
+}
+
+.option-list {
+  display: grid;
+  gap: 8px;
+  padding: 0 0 14px;
+  max-height: 220px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.option-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.option-list::-webkit-scrollbar-thumb {
+  background: rgba(116, 198, 186, 0.45);
+  border-radius: 999px;
+}
+
+.option-row {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: center;
+  gap: 8px;
+  min-height: 24px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.option-row input {
+  width: 15px;
+  height: 15px;
+  accent-color: #74c6ba;
+  cursor: pointer;
+}
+
+.option-row.none-option {
+  color: rgba(255, 255, 255, 0.56);
+}
+
+
+canvas {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: block;
+  image-rendering: pixelated;
+  border-radius: 18px;
+  background:
+    linear-gradient(45deg, rgba(255,255,255,0.045) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255,255,255,0.045) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.045) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.045) 75%),
+    #101014;
+  background-size: 28px 28px;
+  background-position: 0 0, 0 14px, 14px -14px, -14px 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.actions button {
+  width: 100%;
+  min-width: 0;
+  min-height: 42px;
+  padding: 10px 6px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.notice {
+  margin-top: 12px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+@media (max-width: 860px) {
+  .page-header {
+    height: 70px;
+  }
+
+  .back-btn {
+    left: 12px;
+    top: 15px;
+    min-width: 74px;
+    height: 38px;
+    font-size: 12px;
+  }
+
+  .builder-page {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+
+  .preview-panel {
+    position: static;
+    order: 1;
+    justify-self: stretch;
+    max-width: none;
+  }
+
+  .parts-panel {
+    order: 2;
+  }
+}
+
+
+/* KP Builder current layout overrides */
+.parts-panel {
+  padding: 22px;
+}
+
+.gender-select {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding-bottom: 18px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.gender-btn {
+  min-height: 42px;
+  font-size: 13px;
+}
+
+.gender-btn.active {
+  outline: 2px solid rgba(116, 255, 230, 0.9);
+  background: linear-gradient(
+    180deg,
+    rgba(116, 198, 186, 0.46),
+    rgba(116, 198, 186, 0.96)
+  );
+}
+
+.filter-head,
+.filter-title,
+.filter-count,
+.clear-btn {
+  display: none !important;
+}
+
+/* Variant grouped checkbox UI */
+.option-list {
+  gap: 7px;
+}
+
+.option-block {
+  display: grid;
+  gap: 7px;
+}
+
+.variant-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 0 5px 26px;
+}
+
+.variant-btn {
+  min-height: 28px;
+  padding: 5px 9px;
+  border-radius: 8px;
+  font-size: 11px;
+  line-height: 1;
+  box-shadow: none;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.variant-btn:hover {
+  transform: translateY(-1px);
+}
+
+.variant-btn.active {
+  color: #fff;
+  border-color: rgba(116, 255, 230, 0.9);
+  background: rgba(116, 198, 186, 0.58);
+}
+
+/* ORIGINAL labels are rendered outside clickable controls. */
+.original-tag,
+.variant-original-tag {
+  color: #ffd36a;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.original-tag {
+  margin: -2px 0 2px 26px;
+}
+
+.variant-item {
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+}
+
+.variant-original-tag {
+  font-size: 8px;
+}
+
+/* Equalize all color-variant buttons even when ORIGINAL labels exist below them. */
+.variant-switcher {
+  align-items: flex-start;
+}
+
+.variant-item {
+  align-self: flex-start;
+  grid-auto-rows: auto;
+}
+
+.variant-btn {
+  height: 28px;
+  min-height: 28px;
+  max-height: 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
