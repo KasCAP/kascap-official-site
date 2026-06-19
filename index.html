@@ -71,9 +71,7 @@
     <section class="project-card clickable-card" data-href="projects/zxcaps/index.html" tabindex="0">
       <div class="card-content">
         <h2>ZXCAPS</h2>
-        <p>
-          Z×CAP - ZMEMES Remastered. 16 elite soldiers from the timeline where centralization won. Signature 3D style. One-time KaspaCAP × ANTX collaboration.
-        </p>
+        <p>Z×CAP - ZMEMES Remastered. 16 elite soldiers from the timeline where centralization won. Signature 3D style. One-time KaspaCAP × ANTX collaboration.</p>
 
         <div class="link-group">
           <a href="https://kaspa.com/nft/collections/ZXCAPS" target="_blank" class="icon-btn" aria-label="ZXCAPS KaspaCom">
@@ -113,6 +111,18 @@
       </div>
 
       <img src="assets/projects/kca.png" class="card-image" alt="KCA">
+    </section>
+
+
+    <div class="section-label">HOLDER UTILITY</div>
+
+    <section class="project-card clickable-card" data-modal="kpBuilderAccessModal" tabindex="0">
+      <div class="card-content">
+        <h2>KP<br>BUILDER</h2>
+        <p>Create your own KasPunk-style image. Exclusive utility for KasPunks holders.</p>
+      </div>
+
+      <img src="assets/projects/kaspunks.png" class="card-image" alt="KP Builder">
     </section>
 
     <div class="section-label">COMICS</div>
@@ -183,15 +193,48 @@
     </div>
   </div>
 
+
+  <div id="kpBuilderAccessModal" class="access-modal" aria-hidden="true">
+    <div class="access-panel">
+      <button class="access-close" type="button" aria-label="Close">×</button>
+
+      <h2>KP Builder</h2>
+
+      <p class="access-label">KASPUNKS HOLDER ONLY</p>
+
+      <p class="access-text">
+        To access KP Builder,<br>
+        you must hold at least one KASPUNKS NFT.
+      </p>
+
+      <button id="kpBuilderConnectBtn" class="access-connect-btn" type="button">
+        CONNECT WALLET
+      </button>
+
+      <p id="kpBuilderStatusText" class="access-status">
+        Connect your wallet to verify your KASPUNKS holdings.
+      </p>
+    </div>
+  </div>
+
   <script>
     const KCA_VERIFY_ENDPOINT = "https://kascap-auth.mr0834gogo.workers.dev/verify-kca";
     const KCA_HOLDER_PAGE = "projects/kca/holder.html";
 
+    const KP_BUILDER_VERIFY_ENDPOINT = "https://kascap-auth.mr0834gogo.workers.dev/verify-kaspunks";
+    const KP_BUILDER_PAGE = "builder/builder.html";
+
     const clickableCards = document.querySelectorAll(".clickable-card");
+    const accessModals = document.querySelectorAll(".access-modal");
+    const modalCloseBtns = document.querySelectorAll(".access-close");
+
     const kcaModal = document.getElementById("kcaAccessModal");
     const kcaConnectBtn = document.getElementById("kcaConnectBtn");
     const kcaStatusText = document.getElementById("kcaStatusText");
-    const modalCloseBtn = document.querySelector(".access-close");
+
+    const kpBuilderModal = document.getElementById("kpBuilderAccessModal");
+    const kpBuilderConnectBtn = document.getElementById("kpBuilderConnectBtn");
+    const kpBuilderStatusText = document.getElementById("kpBuilderStatusText");
 
     function openModal(modalId) {
       const modal = document.getElementById(modalId);
@@ -203,16 +246,18 @@
     }
 
     function closeModal() {
-      if (!kcaModal) return;
+      accessModals.forEach((modal) => {
+        modal.classList.remove("is-open");
+        modal.setAttribute("aria-hidden", "true");
+      });
 
-      kcaModal.classList.remove("is-open");
-      kcaModal.setAttribute("aria-hidden", "true");
       document.body.classList.remove("modal-open");
     }
 
-    function setKcaStatus(message, type = "") {
-      kcaStatusText.textContent = message;
-      kcaStatusText.className = `access-status ${type}`;
+    function setStatus(target, message, type = "") {
+      if (!target) return;
+      target.textContent = message;
+      target.className = `access-status ${type}`;
     }
 
     async function getKaswareAddress() {
@@ -252,24 +297,74 @@
       return false;
     }
 
+    function hasKaspunksAccess(data) {
+      if (!data || data.ok !== true) return false;
+
+      const directFlags = [
+        data.hasKaspunks,
+        data.hasKasPunks,
+        data.hasKASPUNKS,
+        data.hasKaspunksNft,
+        data.hasKaspunksNFT,
+        data.hasAccess
+      ];
+
+      if (directFlags.some(Boolean)) return true;
+
+      const countValues = [
+        data.count,
+        data.balance,
+        data.kaspunksCount,
+        data.kasPunksCount,
+        data.KASPUNKS,
+        data?.collections?.KASPUNKS,
+        data?.collections?.kaspunks,
+        data?.holdings?.KASPUNKS,
+        data?.holdings?.kaspunks
+      ];
+
+      return countValues.some((value) => Number(value) >= 1);
+    }
+
+    async function verifyKaspunksHolder(address) {
+      const response = await fetch(KP_BUILDER_VERIFY_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ address })
+      });
+
+      if (!response.ok) {
+        throw new Error("Verification failed. Please try again later.");
+      }
+
+      const data = await response.json();
+
+      if (!hasKaspunksAccess(data)) return false;
+
+      sessionStorage.setItem("kpBuilderAccessToken", data.token || `kp-builder-${Date.now()}`);
+      return true;
+    }
+
     async function handleKcaConnect() {
       try {
         kcaConnectBtn.disabled = true;
-        setKcaStatus("Connecting wallet...", "loading");
+        setStatus(kcaStatusText, "Connecting wallet...", "loading");
 
         const address = await getKaswareAddress();
 
-        setKcaStatus("Wallet connected. Checking KCA holdings...", "loading");
+        setStatus(kcaStatusText, "Wallet connected. Checking KCA holdings...", "loading");
 
         const isHolder = await verifyKcaHolder(address);
 
         if (!isHolder) {
-          setKcaStatus("Access denied. This wallet does not hold KCA.", "error");
+          setStatus(kcaStatusText, "Access denied. This wallet does not hold KCA.", "error");
           kcaConnectBtn.disabled = false;
           return;
         }
 
-        setKcaStatus("Access granted. Redirecting...", "success");
+        setStatus(kcaStatusText, "Access granted. Redirecting...", "success");
 
         setTimeout(() => {
           window.location.href = KCA_HOLDER_PAGE;
@@ -277,8 +372,38 @@
 
       } catch (error) {
         console.error(error);
-        setKcaStatus(error.message || "Something went wrong.", "error");
+        setStatus(kcaStatusText, error.message || "Something went wrong.", "error");
         kcaConnectBtn.disabled = false;
+      }
+    }
+
+    async function handleKpBuilderConnect() {
+      try {
+        kpBuilderConnectBtn.disabled = true;
+        setStatus(kpBuilderStatusText, "Connecting wallet...", "loading");
+
+        const address = await getKaswareAddress();
+
+        setStatus(kpBuilderStatusText, "Wallet connected. Checking KASPUNKS holdings...", "loading");
+
+        const isHolder = await verifyKaspunksHolder(address);
+
+        if (!isHolder) {
+          setStatus(kpBuilderStatusText, "Access denied. This wallet does not hold KASPUNKS.", "error");
+          kpBuilderConnectBtn.disabled = false;
+          return;
+        }
+
+        setStatus(kpBuilderStatusText, "Access granted. Redirecting...", "success");
+
+        setTimeout(() => {
+          window.location.href = KP_BUILDER_PAGE;
+        }, 700);
+
+      } catch (error) {
+        console.error(error);
+        setStatus(kpBuilderStatusText, error.message || "Something went wrong.", "error");
+        kpBuilderConnectBtn.disabled = false;
       }
     }
 
@@ -323,21 +448,22 @@
       });
     });
 
-    modalCloseBtn.addEventListener("click", closeModal);
+    modalCloseBtns.forEach((button) => {
+      button.addEventListener("click", closeModal);
+    });
 
-    kcaModal.addEventListener("click", (event) => {
-      if (event.target === kcaModal) {
-        closeModal();
-      }
+    accessModals.forEach((modal) => {
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) closeModal();
+      });
     });
 
     document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && kcaModal.classList.contains("is-open")) {
-        closeModal();
-      }
+      if (event.key === "Escape") closeModal();
     });
 
     kcaConnectBtn.addEventListener("click", handleKcaConnect);
+    kpBuilderConnectBtn.addEventListener("click", handleKpBuilderConnect);
   </script>
 
 </body>
