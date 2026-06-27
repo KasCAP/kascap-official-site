@@ -3,6 +3,7 @@
 ========================= */
 
 const KASCAP_ASSET_API = "https://kascap-auth.mr0834gogo.workers.dev";
+const KASCAP_TRACK_API = "https://kascap-auth.mr0834gogo.workers.dev";
 
 const params = new URLSearchParams(window.location.search);
 
@@ -18,6 +19,7 @@ const totalPagesByChapter = {
 
 const totalPages = totalPagesByChapter[chapter] || 16;
 let currentPage = 1;
+let hasTrackedView = false;
 
 const comicImage = document.getElementById("comicImage");
 const currentPageText = document.getElementById("currentPage");
@@ -33,6 +35,31 @@ function padPageNumber(num) {
 
 function getChapterFolder(chapterNumber) {
   return `ch${String(chapterNumber).padStart(2, "0")}`;
+}
+
+function getTrackingPageKey() {
+  if (chapter === "1" && lang === "jp") return "chapter1_jp";
+  if (chapter === "1" && lang === "en") return "chapter1_en";
+  if (chapter === "2" && lang === "jp") return "chapter2_jp";
+  if (chapter === "2" && lang === "en") return "chapter2_en";
+  return "";
+}
+
+function trackMangaViewOnce() {
+  if (hasTrackedView) return;
+
+  const page = getTrackingPageKey();
+  if (!page) return;
+
+  hasTrackedView = true;
+
+  fetch(`${KASCAP_TRACK_API}/api/track`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ page }),
+  }).catch(() => {});
 }
 
 function getImagePath() {
@@ -116,5 +143,6 @@ function handleSwipe() {
 if ((chapter === "2" || isProtected) && !accessToken) {
   window.location.href = "./index.html";
 } else {
+  trackMangaViewOnce();
   updateViewer();
 }
